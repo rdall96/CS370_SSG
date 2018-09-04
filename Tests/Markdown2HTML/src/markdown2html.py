@@ -51,10 +51,6 @@ def parseMarkdown(mFile, htmlFile):
     htmlFile.write(html)
     return htmlFile
 
-#def closeFiles(file1, file2):
-#    file1.close()
-#    file2.close()
-
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------    
 
@@ -70,6 +66,3 @@ htmlFile = createHTML(inputFile)
 
 #parse and analyze the markdown file and obtain the html file
 outputFile = parseMarkdown(inputFile, htmlFile)
-
-#close the files
-#closeFiles(inputFile, outputFile)
