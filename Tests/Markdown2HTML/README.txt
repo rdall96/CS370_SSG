@@ -17,5 +17,6 @@ Installation:
     "pip install git+https://github.com/Python-Markdown/markdown.git"
 
 Usage:
-    
+    import markdown2html as Converter
+    [output_file] = Converter.markdown2html( [file_to_convert] )
 
