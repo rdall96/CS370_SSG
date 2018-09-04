@@ -10,10 +10,9 @@
 #----------------------------------------------------------------------
 DEBUG = True
 
-import sys
 import os
 import markdown
-import codecs
+import markdown_extensions
 
 def LOG(string):
     if DEBUG:
@@ -47,7 +46,7 @@ def parseMarkdown(mFile, htmlFile):
     input_file = open(mFile, "r", 0)
     text = input_file.read()
     #input the contents of the markdown file into the html file
-    html = markdown.markdown(text)
+    html = markdown.markdown(text, ['markdown_extensions'])
     htmlFile.write(html)
     return htmlFile
 

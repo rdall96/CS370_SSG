@@ -8,10 +8,11 @@
 # Description: Translates a text file written in Markdown to a working
 # HTML document and saves it with the same name
 #----------------------------------------------------------------------
-DEBUG = True
+DEBUG = False
 
 import os
 import markdown
+import markdown_extensions
 
 def LOG(string):
     if DEBUG:
@@ -45,7 +46,7 @@ def parseMarkdown(mFile, htmlFile):
     input_file = open(mFile, "r", 0)
     text = input_file.read()
     #input the contents of the markdown file into the html file
-    html = markdown.markdown(text)
+    html = markdown.markdown(text, ['markdown_extensions'])
     #write the converted html text to the html file
     htmlFile.write(html)
     return htmlFile
