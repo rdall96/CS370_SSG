@@ -12,6 +12,7 @@ DEBUG = True
 
 import sys
 import os
+import markdown
 #import markdown dictonary
 import markdownDictonary as Markdown
 
