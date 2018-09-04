@@ -5,8 +5,8 @@
 # Author: Ricky Dall'Armellina
 # Date: 09/3/2018
 #
-# Translates a text file written in Markdown to a working HTML document
-# and saves it with the same name
+# Description: Translates a text file written in Markdown to a working
+# HTML document and saves it with the same name
 #----------------------------------------------------------------------
 DEBUG = True
 

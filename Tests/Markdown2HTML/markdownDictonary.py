@@ -5,7 +5,7 @@
 # Author: Ricky Dall'Armellina
 # Date: 09/3/2018
 #
-# Python dictonary for reference Markdown to HTML
+# Description: Python dictonary for reference Markdown to HTML
 # Reference: https://www.markdowntutorial.com/
 #----------------------------------------------------------------------
 
