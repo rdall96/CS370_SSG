@@ -1,0 +1,31 @@
+
+# Custom Created
+
+    def openText(fName):
+        #open the file and return it
+        #print("Opening file: ", fName)
+        markText = open(fName, "r", 0)
+        return markText
+
+    def createHTML(fName):
+        #get name from getFileName() and create html file with that name
+        LOG("Creating HTML file...")
+        htmlName = getFileName(fName) + ".html"
+        htmlText = open(htmlName, "w+", 0)
+        htmlText.write("<!DOCTYPE html>\n")
+        htmlText.write("<html><body>")
+        return htmlText
+        
+    def closeHTML(html):
+        html.write("</body>")
+        html.write("</html>")
+        html.close()
+
+#Markdown Library
+
+    input_file = codecs.open("some_file.txt", mode="r", encoding="utf-8")
+    text = input_file.read()
+    html = markdown.markdown(text)
+
+    output_file = codecs.open("some_file.html", "w", encoding="utf-8", errors="xmlcharrefreplace")
+    output_file.write(html)
