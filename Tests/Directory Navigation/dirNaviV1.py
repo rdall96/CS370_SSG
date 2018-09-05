@@ -5,6 +5,7 @@
 #                                               #
 #    Author: Dan Levy    Date:09/3/2018         #
 #    Version: Initial                           #
+#    Langauge: Python                           #
 #################################################
 
 import os
@@ -16,3 +17,14 @@ def findTargetDir(targetDir):
             print targetDir, " found"
 	    path = os.path.dirname(os.path.abspath(__file__))
 	    return path
+    return -1
+
+def findTargetFile(targetFile)
+    for root, dirs, files in os.walk('.'):
+        print root, " is current directory",
+        if targetFile in files:
+            print targetFile, " found"
+            path = os.path.dirname(os.path.abspath(__file__))
+            return path
+    return -1
+
