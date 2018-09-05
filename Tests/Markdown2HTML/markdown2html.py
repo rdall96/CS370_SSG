@@ -34,11 +34,25 @@ def checkExistingFile(fileName):
     else:
         LOG("HTML file doesn't exist, continuing...")
 
+def generateHTMLHeader(file, mode):
+    #generates html opening and closing elements
+    #take the html file to ad headers to and a mode as an argument
+    #mode 'o' (opening statements)
+    #mode 'c' (closing statements)
+    if mode == 'o':
+        headFile = open("html_head.txt", "r", 0)
+        file.write(headFile.read())
+        headFile.close()
+    elif mode == 'c':
+        file.write("\n</body>\n</html>")
+    return file
+
 def createHTML(fileName):
     #get name from getFileName() and create html file with that name
     LOG("Creating HTML file...")
     htmlName = getFileName(fileName) + ".html"
     html = open(htmlName, "w+", 0)
+    html = generateHTMLHeader(html, 'o')
     return html
 
 def parseMarkdown(mFile, htmlFile):
@@ -57,4 +71,5 @@ def markdown2html(inputFile):
     htmlFile = createHTML(inputFile)
     #parse and analyze the markdown file and obtain the html file
     outputFile = parseMarkdown(inputFile, htmlFile)
+    generateHTMLHeader(outputFile, "c")
     return outputFile
