@@ -10,17 +10,24 @@
 
 import os
 from os.path import join, getsize
-def findTargetDir(targetDir):
-    for root, dirs, files in os.walk('.'):
-        print root, " is current directory",
+
+#Variables: targetDir is the directory to find
+#           topDirectory is the directory you want to search all the children of
+#Return Value(s): returns the absolute path of the target Directory, or -1 on failure
+#Usage: targetDir must be passed in as a string containing the directory name
+#       topDirectory msut be passed in as a string of the absolute path of the directory
+def findTargetDir(targetDir, topDirectory):
+    for root, dirs, files in os.walk(topDirectory):
         if targetDir in dirs:
             print targetDir, " found"
 	    path = os.path.dirname(os.path.abspath(__file__))
+            print " Path is ", path
 	    return path
     return -1
 
-def findTargetFile(targetFile):
-    for root, dirs, files in os.walk('.'):
+
+def findTargetFile(targetFile, topDirectory):
+    for root, dirs, files in os.walk(topDirectory):
         print root, " is current directory",
         if targetFile in files:
             print targetFile, " found"
