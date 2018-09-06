@@ -11,6 +11,7 @@
 #----------------------------------------------------------------------
 
 # Import statements
+import src.markdown2html as Converter
 
 # Other functions
 
