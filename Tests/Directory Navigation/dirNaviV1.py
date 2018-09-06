@@ -28,10 +28,10 @@ def findTargetDir(targetDir, topDirectory):
 
 def findTargetFile(targetFile, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
-        print root, " is current directory",
         if targetFile in files:
             print targetFile, " found"
             path = os.path.dirname(os.path.abspath(__file__))
+            print " Path is ", path
             return path
     return -1
 
