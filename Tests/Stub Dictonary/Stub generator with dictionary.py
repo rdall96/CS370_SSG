@@ -4,6 +4,7 @@
 #Enter a 2 to change a file path, enter the stub then enter the new file path
 #Enter a 3 to end the program
 #Derek Connelly 9/4/18
+#Next objective: turn program into a function, create a file and append dictionary to it
 
 import random
 import string
@@ -25,6 +26,12 @@ while cond != 3:
                 stubTemp = stubTemp + random.choice(string.ascii_uppercase)
         fileDict[pathTemp] = stubTemp
         print(collections.OrderedDict(sorted(fileDict.items())))
+        line = '<!-- ' + stubTemp + '-->\n'
+        f = open(pathTemp, "r+")
+        file_data = f.read()
+        f.seek(0,0)
+        f.write(line.rstrip('\r\n') + '\n' + file_data)
+        f.close()
     elif cond == 2:
         stubTemp = input("Enter a stub to change the path\n")
         if stubTemp in fileDict.values():
