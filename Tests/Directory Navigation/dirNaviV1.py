@@ -19,12 +19,21 @@ def findTargetDir(targetDir):
 	    return path
     return -1
 
-def findTargetFile(targetFile)
+def findTargetFile(targetFile):
     for root, dirs, files in os.walk('.'):
         print root, " is current directory",
         if targetFile in files:
             print targetFile, " found"
             path = os.path.dirname(os.path.abspath(__file__))
             return path
+    return -1
+
+def extractStub(targetFile):
+    with open("targetFile", "r") as ins:
+        for line in ins:
+            if "Stub" in line:
+                stubName = line.split()[1]
+                print "Stub name is " + stubName
+                return stubName
     return -1
 
