@@ -25,7 +25,8 @@ while cond != 3:
             else:
                 stubTemp = stubTemp + random.choice(string.ascii_uppercase)
         fileDict[pathTemp] = stubTemp
-        print(collections.OrderedDict(sorted(fileDict.items())))
+        fileDict = collections.OrderedDict(sorted(fileDict.items()))
+        print(fileDict)
         line = '<!-- ' + stubTemp + '-->\n'
         f = open(pathTemp, "r+")
         file_data = f.read()
