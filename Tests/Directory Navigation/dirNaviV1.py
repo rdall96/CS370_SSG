@@ -19,7 +19,7 @@ def findTargetDir(targetDir):
 	    return path
     return -1
 
-def findTargetFile(targetFile)
+def findTargetFile(targetFile):
     for root, dirs, files in os.walk('.'):
         print root, " is current directory",
         if targetFile in files:
