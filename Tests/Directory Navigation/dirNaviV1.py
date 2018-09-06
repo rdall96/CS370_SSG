@@ -38,7 +38,7 @@ def findTargetFile(targetFile, topDirectory):
 def extractStub(targetFile):
     with open("targetFile", "r") as ins:
         for line in ins:
-            if "Stub" in line:
+            if "<!--" in line:
                 stubName = line.split()[1]
                 print "Stub name is " + stubName
                 return stubName
