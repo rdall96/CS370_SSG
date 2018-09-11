@@ -21,31 +21,37 @@ def LOG(string):
     if DEBUG:
         print(string)
 
+def getSourcePath():
+    LOG("Insert path to markdown documents: ")
+    return raw_input()
+
+def selectTheme():
+    LOG("Choose a theme: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
+    themeOption = raw_input()
+    if themeOption == '1':
+        #light theme selected
+        LOG("Light theme choosen")
+        return "light_theme"
+    elif themeOption == '2':
+        #dark theme selected
+        LOG("Dark theme choosen")
+        return "dark_theme"
+    elif themeOption == '3':
+        #dark theme selected
+        LOG("Fun theme choosen")
+        return "fun_theme"
+    else:
+        LOG("The selcted theme does not exist")
+
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
 print(" - Welcome to the Static Site Generator! - ")
 
 # Ask user for folder path with markdown files
-LOG("Insert path to markdown documents: ")
-markdownFolder = raw_input()
+markdownFolder = getSourcePath()
 
 # Ask user to pick a theme for the website
-LOG("Choose a theme: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
-themeOption = raw_input()
-if themeOption == '1':
-    #light theme selected
-    LOG("Light theme choosen")
-    userTheme = "light_theme"
-elif themeOption == '2':
-    #dark theme selected
-    LOG("Dark theme choosen")
-    userTheme = "dark_theme"
-elif themeOption == '3':
-    #dark theme selected
-    LOG("Fun theme choosen")
-    userTheme = "fun_theme"
-else:
-    LOG("The selcted theme does not exist")
+userTheme = selectTheme()
 
 # Analyze folder and build stub dictonary
 

@@ -13,7 +13,6 @@ import collections
 import json
 
 fileDict = {}
-
 def stubGen(pathTemp):
         stubTemp = ""
         for x in range(4):
@@ -42,6 +41,3 @@ def stubCheck(pathTemp, stubTemp):
             output = open("Dictionary_output.txt", "w")
             output.write(fileDictJson)
             output.close()
-
-
-
