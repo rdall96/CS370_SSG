@@ -44,7 +44,7 @@ def generateHTMLHeader(file, mode):
         file.write(headFile.read())
         headFile.close()
     elif mode == 'c':
-        file.write("\n</body>\n</html>")
+        file.write("\n</body>")
     return file
 
 def createHTML(fileName):
