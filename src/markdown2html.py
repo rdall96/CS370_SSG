@@ -57,7 +57,12 @@ def createHTML(fileName):
 
 def parseMarkdown(mFile, htmlFile):
     #call Markdown library to open the textFile and read it
-    input_file = open(mFile, "r", 0)
+    try:
+        input_file = open(mFile, "r", 0)
+    except OSError as e:
+        LOG("Cannot open the target file: " + mFile)
+        LOG("Perhaps the path to the file is incorrect?")
+        LOG(e)
     text = input_file.read()
     #input the contents of the markdown file into the html file
     html = markdown.markdown(text, ['markdown_extensions'])

@@ -14,6 +14,7 @@ DEBUG = True
 
 # Import statements
 import src.markdown2html as Converter
+import src.Stubber as Stubber
 
 # Other functions
 
