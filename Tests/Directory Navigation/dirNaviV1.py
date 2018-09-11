@@ -10,6 +10,7 @@
 
 import os
 from os.path import join, getsize
+from shutil import copyfile
 
 #Variables: targetDir is the directory to find
 #           topDirectory is the directory you want to search all the children of
@@ -25,6 +26,8 @@ def findTargetDir(targetDir, topDirectory):
 	    return path
     return -1
 
+def transcriptTargetFile(targetFilePath, newFilePath):
+    shutil.move(targetFilePath, newFilePath)
 
 def findTargetFile(targetFile, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
