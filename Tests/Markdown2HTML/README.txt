@@ -16,7 +16,12 @@ Installation:
     "pip install markdown"
     "pip install git+https://github.com/Python-Markdown/markdown.git"
 
-Usage:
+Files to copy in your program folder:
+    - markdown2html.py
+    - markdown_extensions.py
+    - html_head.txt
+
+Usage in code:
     import markdown2html as Converter
     [output_file] = Converter.markdown2html( [file_to_convert] )
 
