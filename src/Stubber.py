@@ -13,7 +13,10 @@ import collections
 import json
 
 fileDict = {}
+
+
 def stubGen(pathTemp):
+    if pathTemp not in fileDict.keys():
         stubTemp = ""
         for x in range(4):
             temp = random.randint(0, 1)
@@ -23,7 +26,7 @@ def stubGen(pathTemp):
                 stubTemp = stubTemp + random.choice(string.ascii_letters)
         fileDict[pathTemp] = stubTemp
         fileDictJson= json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-        output = open("Dictionary_output.txt", "w", 0)
+        output = open("src/Dictionary_output.txt", "w")
         output.write(fileDictJson)
         output.close()
         line = '<!-- ' + stubTemp + '-->\n'
@@ -33,11 +36,22 @@ def stubGen(pathTemp):
         f.write(line.rstrip('\r\n') + '\n' + file_data)
         f.close()
 
+
 def stubCheck(pathTemp, stubTemp):
         if stubTemp in fileDict.values() and (list(fileDict.keys())[list(fileDict.values()).index(stubTemp)] != pathTemp):
             del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
             fileDict[pathTemp] = stubTemp
             fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-            output = open("Dictionary_output.txt", "w")
+            output = open("src/Dictionary_output.txt", "w")
             output.write(fileDictJson)
             output.close()
+
+
+def loadDict(nfile):
+    with open(nfile, 'r') as inf:
+        fileDict = eval(inf.read())
+    fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+    output = open("src/Dictionary_output.txt", "w")
+    output.write(fileDictJson)
+    output.close()
+

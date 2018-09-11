@@ -38,17 +38,18 @@ def selectTheme():
     if themeOption == '1':
         #light theme selected
         LOG("Light theme choosen")
-        return "light_theme"
+        theme = "light_theme"
     elif themeOption == '2':
         #dark theme selected
         LOG("Dark theme choosen")
-        return "dark_theme"
+        theme = "dark_theme"
     elif themeOption == '3':
         #dark theme selected
         LOG("Fun theme choosen")
-        return "fun_theme"
+        theme = "fun_theme"
     else:
         LOG("The selcted theme does not exist")
+    return "Themes/" + theme + ".css"
 
 def addStubs(folder):
     for root, dirs, files in os.walk(folder):
@@ -78,3 +79,6 @@ addStubs(markdownFolder)
 
 # Copy files to 'HTML' folder
 # If the file's extension is '.md' then convert it
+
+# Copy stylesheet
+#DirNavigator.transcriptTargetFile(os.path.abspath(userTheme), os.path.abspath(htmlFolder + "/styles.css"))
