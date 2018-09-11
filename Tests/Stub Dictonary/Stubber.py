@@ -13,7 +13,10 @@ import collections
 import json
 
 fileDict = {}
+
+
 def stubGen(pathTemp):
+    if pathTemp not in fileDict.keys():
         stubTemp = ""
         for x in range(4):
             temp = random.randint(0, 1)
@@ -33,6 +36,7 @@ def stubGen(pathTemp):
         f.write(line.rstrip('\r\n') + '\n' + file_data)
         f.close()
 
+
 def stubCheck(pathTemp, stubTemp):
         if stubTemp in fileDict.values() and (list(fileDict.keys())[list(fileDict.values()).index(stubTemp)] != pathTemp):
             del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
@@ -41,3 +45,13 @@ def stubCheck(pathTemp, stubTemp):
             output = open("Dictionary_output.txt", "w")
             output.write(fileDictJson)
             output.close()
+
+
+def loadDict(nfile):
+    with open(nfile, 'r') as inf:
+        fileDict = eval(inf.read())
+    fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+    output = open("Dictionary_output.txt", "w")
+    output.write(fileDictJson)
+    output.close()
+
