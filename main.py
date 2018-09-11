@@ -50,6 +50,15 @@ def selectTheme():
     else:
         LOG("The selcted theme does not exist")
 
+def addStubs(folder):
+    for root, dirs, files in os.walk(folder):
+        for file in files:
+            LOG(file)
+            if file.endswith(".md"):
+                Stubber.stubGen(folder + '/' + file)
+            else:
+                LOG("Not a markdown file, skipping it...")
+
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
 print(" - Welcome to the Static Site Generator! - ")
@@ -62,13 +71,7 @@ htmlFolder = os.path.abspath(getDestinationPath())
 userTheme = selectTheme()
 
 # Analyze folder and build stub dictonary # Call Stubber
-for root, dirs, files in os.walk(markdownFolder):
-    for file in files:
-        LOG(file)
-        if file.endswith(".md"):
-            Stubber.stubGen(markdownFolder + '/' + file)
-        else:
-            LOG("Not a markdown file, skipping it...")
+addStubs(markdownFolder)
 
 # Create 'HTML' folder with same hierarchy as 'Markdown' folder
 
