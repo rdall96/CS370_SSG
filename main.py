@@ -2,7 +2,7 @@
 
 #----------------------------------------------------------------------
 # Static Site Generator
-# Author: CS 370 group
+# Author: Ricky Dall'Armellina
 # Date: 09/6/2018
 #
 # Description: This application takes a folder of markdown files and
@@ -13,8 +13,10 @@
 DEBUG = True
 
 # Import statements
+import os
 import src.markdown2html as Converter
 import src.Stubber as Stubber
+import src.dirNaviV1 as DirNavigator
 
 # Other functions
 
@@ -24,6 +26,10 @@ def LOG(string):
 
 def getSourcePath():
     LOG("Insert path to markdown documents: ")
+    return raw_input()
+
+def getDestinationPath():
+    LOG("Insert path to the website folder: ")
     return raw_input()
 
 def selectTheme():
@@ -49,13 +55,20 @@ def selectTheme():
 print(" - Welcome to the Static Site Generator! - ")
 
 # Ask user for folder path with markdown files
-markdownFolder = getSourcePath()
+markdownFolder = os.path.abspath(getSourcePath())
+htmlFolder = os.path.abspath(getDestinationPath())
 
 # Ask user to pick a theme for the website
 userTheme = selectTheme()
 
-# Analyze folder and build stub dictonary
-
+# Analyze folder and build stub dictonary # Call Stubber
+for root, dirs, files in os.walk(markdownFolder):
+    for file in files:
+        LOG(file)
+        if file.endswith(".md"):
+            Stubber.stubGen(markdownFolder + '/' + file)
+        else:
+            LOG("Not a markdown file, skipping it...")
 
 # Create 'HTML' folder with same hierarchy as 'Markdown' folder
 

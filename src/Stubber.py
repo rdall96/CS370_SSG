@@ -23,7 +23,7 @@ def stubGen(pathTemp):
                 stubTemp = stubTemp + random.choice(string.ascii_letters)
         fileDict[pathTemp] = stubTemp
         fileDictJson= json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-        output = open("Dictionary_output.txt", "w")
+        output = open("Dictionary_output.txt", "w", 0)
         output.write(fileDictJson)
         output.close()
         line = '<!-- ' + stubTemp + '-->\n'
