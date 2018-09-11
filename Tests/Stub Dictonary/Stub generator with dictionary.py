@@ -12,6 +12,8 @@ import string
 import collections
 import json
 
+fileDict = {}
+
 def stubGen(pathTemp):
         stubTemp = ""
         for x in range(4):
