@@ -12,10 +12,11 @@
 import errno
 import shutil
 import os
+import markdown2html as Converter
 
-def copy():
-    src = 'Markdown/'
-    dest = 'HTML'
+def copy(folderPath, destPath):
+    src = folderPath
+    dest = destPath
     try:
         shutil.copytree(src, dest)
 
@@ -26,12 +27,20 @@ def copy():
         else:
             print('Directory not copied. Error: %s' % e)
 
-        recursiveConversion(dest)
+    recursiveConversion(src, dest)
 
-copy()
-
-def recursiveConversion(dest):
+def recursiveConversion(src, dest):
     for root, dirs, files in os.walk(dest):
         for file in files:
             if file.endswith(".md"):
                 #call converter here
+                file = os.path.abspath(src + file)
+                print(file)
+                file = Converter.markdown2html(file)
+
+
+
+
+#-------------------------------------------------------------------------------
+
+copy('Markdown/', 'HTML/')
