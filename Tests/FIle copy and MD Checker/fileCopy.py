@@ -2,7 +2,7 @@
 
 import os
 import shutil
-import checkMD.py as Checker
+import checkMD as Checker
 
 
 def fileCopy(srcDir, destDir):
