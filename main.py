@@ -14,9 +14,9 @@ DEBUG = True
 
 # Import statements
 import os
-import src.markdown2html as Converter
-import src.Stubber as Stubber
-import src.dirNaviV1 as DirNavigator
+import src.converter.markdown2html as Converter
+import src.stubber.Stubber as Stubber
+import src.navigator.dirNaviV1 as DirNavigator
 
 # Other functions
 
