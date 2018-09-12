@@ -48,11 +48,11 @@ def selectTheme(destFolder):
     shutil.copy2(themePath, (destFolder + "/styles.css"))
 
 def addStubs(folder):
-    for root, dirs, files in os.walk(folder):
-        for file in files:
-            LOG(file)
-            if file.endswith(".md"):
-                Stubber.stubGen(folder + '/' + file)
+    for srcDir, dirs, files in os.walk(folder):
+        for file_ in files:
+            LOG(file_)
+            if file_.endswith(".md"):
+                Stubber.stubGen(srcDir + '/' + file_)
             else:
                 LOG("Not a markdown file, skipping it...")
 
@@ -67,7 +67,7 @@ markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
 htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 
 # Analyze folder and build stub dictonary # Call Stubber
-addStubs(markdownFolder)
+addStubs(getFullPath(markdownFolder))
 
 # Convert Markdown files to HTML
 
