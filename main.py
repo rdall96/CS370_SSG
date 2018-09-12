@@ -13,10 +13,10 @@
 DEBUG = True
 
 # Import statements
-import os
+import os, shutil
 import src.converter.markdown2html as Converter
-import src.stubber.Stubber as Stubber
 import src.navigator.dirNaviV1 as DirNavigator
+import src.stubber.Stubber as Stubber
 
 # Other functions
 
@@ -24,15 +24,10 @@ def LOG(string):
     if DEBUG:
         print(string)
 
-def getSourcePath():
-    LOG("Insert path to markdown documents: ")
-    return raw_input()
+def getFullPath(folder):
+    return os.path.abspath(folder + '/')
 
-def getDestinationPath():
-    LOG("Insert path to the website folder: ")
-    return raw_input()
-
-def selectTheme():
+def selectTheme(destFolder):
     LOG("Choose a theme: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
     themeOption = raw_input()
     if themeOption == '1':
@@ -49,7 +44,8 @@ def selectTheme():
         theme = "fun_theme"
     else:
         LOG("The selcted theme does not exist")
-    return "Themes/" + theme + ".css"
+    themePath = "Themes/" + theme + ".css"
+    shutil.copy2(themePath, (destFolder + "/styles.css"))
 
 def addStubs(folder):
     for root, dirs, files in os.walk(folder):
@@ -60,26 +56,26 @@ def addStubs(folder):
             else:
                 LOG("Not a markdown file, skipping it...")
 
+
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
-print(" - Welcome to the Static Site Generator! - ")
+
+print("\n - Welcome to the Static Site Generator! - \n")
 
 # Ask user for folder path with markdown files
-markdownFolder = os.path.abspath(getSourcePath())
-htmlFolder = os.path.abspath(getDestinationPath())
-
-# Ask user to pick a theme for the website
-userTheme = selectTheme()
-
+markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
+htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 
 # Analyze folder and build stub dictonary # Call Stubber
 addStubs(markdownFolder)
 
-# Create 'HTML' folder with same hierarchy as 'Markdown' folder
+# Convert Markdown files to HTML
 
 
 # Copy files to 'HTML' folder
-# If the file's extension is '.md' then convert it
 
-# Copy stylesheet
-#DirNavigator.transcriptTargetFile(os.path.abspath(userTheme), os.path.abspath(htmlFolder + "/styles.css"))
+
+# Ask user to pick a theme for the website and copy it
+selectTheme(htmlFolder)
+
+print("DONE!")
