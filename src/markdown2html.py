@@ -40,24 +40,26 @@ def generateHTMLHeader(file, mode):
     #mode 'o' (opening statements)
     #mode 'c' (closing statements)
     if mode == 'o':
-        headFile = open("html_head.txt", "r", 0)
+        headFile = open("src/html_head.txt", "r", 0)
         file.write(headFile.read())
         headFile.close()
     elif mode == 'c':
         file.write("\n</body>")
     return file
 
-def createHTML(fileName):
+def createHTML(fileName, folder):
     #get name from getFileName() and create html file with that name
     LOG("Creating HTML file...")
     htmlName = getFileName(fileName) + ".html"
+    htmlName = folder + htmlName
     html = open(htmlName, "w+", 0)
     html = generateHTMLHeader(html, 'o')
     return html
 
-def parseMarkdown(mFile, htmlFile):
+def parseMarkdown(mFile, htmlFile, folder):
     #call Markdown library to open the textFile and read it
     try:
+        mFile = folder + mFile
         input_file = open(mFile, "r", 0)
     except OSError as e:
         LOG("Cannot open the target file: " + mFile)
@@ -65,16 +67,17 @@ def parseMarkdown(mFile, htmlFile):
         LOG(e)
     text = input_file.read()
     #input the contents of the markdown file into the html file
-    html = markdown.markdown(text, ['markdown_extensions'])
+    #html = markdown.markdown(text, ['markdown_extensions'])
+    html = markdown.markdown(text)
     #write the converted html text to the html file
     htmlFile.write(html)
     return htmlFile
 
-def markdown2html(inputFile):
+def markdown2html(inputFile, folder):
     LOG("- Markdown to HTML Python Translator -\n")
     #create html file
-    htmlFile = createHTML(inputFile)
+    htmlFile = createHTML(inputFile, folder)
     #parse and analyze the markdown file and obtain the html file
-    outputFile = parseMarkdown(inputFile, htmlFile)
+    outputFile = parseMarkdown(inputFile, htmlFile, folder)
     generateHTMLHeader(outputFile, "c")
     return outputFile
