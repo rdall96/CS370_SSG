@@ -71,6 +71,7 @@ htmlFolder = os.path.abspath(getDestinationPath())
 # Ask user to pick a theme for the website
 userTheme = selectTheme()
 
+
 # Analyze folder and build stub dictonary # Call Stubber
 addStubs(markdownFolder)
 
