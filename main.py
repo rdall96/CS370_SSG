@@ -76,6 +76,6 @@ addStubs(getFullPath(markdownFolder))
 
 
 # Ask user to pick a theme for the website and copy it
-selectTheme(htmlFolder)
+#selectTheme(htmlFolder)
 
 print("DONE!")
