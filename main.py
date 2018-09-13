@@ -10,13 +10,14 @@
 #              separate folder with the correct hierarchy.
 #----------------------------------------------------------------------
 
-DEBUG = True
+DEBUG = False
 
 # Import statements
 import os, shutil
 import src.converter.markdown2html as Converter
 import src.navigator.dirNaviV1 as DirNavigator
 import src.stubber.Stubber as Stubber
+import src.copier.fileCopy as Copier
 
 # Other functions
 
@@ -28,7 +29,7 @@ def getFullPath(folder):
     return os.path.abspath(folder + '/')
 
 def selectTheme(destFolder):
-    LOG("Choose a theme: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
+    print("Choose a theme: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
     themeOption = raw_input()
     if themeOption == '1':
         #light theme selected
@@ -70,12 +71,11 @@ htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 addStubs(getFullPath(markdownFolder))
 
 # Convert Markdown files to HTML
-
-
 # Copy files to 'HTML' folder
+Copier.fileCopy(markdownFolder, htmlFolder)
 
 
 # Ask user to pick a theme for the website and copy it
-#selectTheme(htmlFolder)
+selectTheme(htmlFolder)
 
 print("DONE!")

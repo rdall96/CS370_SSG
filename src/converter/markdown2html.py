@@ -49,19 +49,17 @@ def generateHTMLHeader(file, mode):
         file.write("\n</body>")
     return file
 
-def createHTML(fileName, folder):
+def createHTML(fileName):
     #get name from getFileName() and create html file with that name
     LOG("Creating HTML file...")
     htmlName = getFileName(fileName) + ".html"
-    htmlName = folder + htmlName
     html = open(htmlName, "w+", 0)
     html = generateHTMLHeader(html, 'o')
     return html
 
-def parseMarkdown(mFile, htmlFile, folder):
+def parseMarkdown(mFile, htmlFile):
     #call Markdown library to open the textFile and read it
     try:
-        mFile = folder + mFile
         input_file = open(mFile, "r", 0)
     except OSError as e:
         LOG("Cannot open the target file: " + mFile)
@@ -76,11 +74,11 @@ def parseMarkdown(mFile, htmlFile, folder):
     htmlFile.write(html)
     return htmlFile
 
-def markdown2html(inputFile, folder):
+def markdown2html(inputFile):
     LOG("- Markdown to HTML Python Translator -\n")
     #create html file
-    htmlFile = createHTML(inputFile, folder)
+    htmlFile = createHTML(inputFile)
     #parse and analyze the markdown file and obtain the html file
-    outputFile = parseMarkdown(inputFile, htmlFile, folder)
+    outputFile = parseMarkdown(inputFile, htmlFile)
     generateHTMLHeader(outputFile, "c")
     return outputFile
