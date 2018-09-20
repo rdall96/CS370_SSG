@@ -24,6 +24,8 @@ def stubGen(pathTemp):
                 stubTemp = stubTemp + str(random.randint(0, 9))
             else:
                 stubTemp = stubTemp + random.choice(string.ascii_letters)
+        if stubTemp in fileDict.values():
+            goto(20)
         fileDict[pathTemp] = stubTemp
         fileDictJson= json.dumps(collections.OrderedDict(sorted(fileDict.items())))
         output = open("Dictionary_output.txt", "w")
@@ -55,3 +57,7 @@ def loadDict(nfile):
     output.write(fileDictJson)
     output.close()
 
+
+def goto(line):
+    global lineNumber
+    line = lineNumber
