@@ -8,39 +8,32 @@
 # the HTML directory to .html files
 #---------------------------------------------------------------------
 
-
+from shutil import copytree, ignore_patterns
 import errno
 import shutil
 import os
 import markdown2html as Converter
+import dirNaviV1 as Utils
+from os.path import join, getsize
 
 def copy(folderPath, destPath):
-    src = folderPath
-    dest = destPath
     try:
-        shutil.copytree(src, dest)
+        shutil.copytree(folderPath, destPath ,  ignore=ignore_patterns('*.md'))
 
     except OSError as e:
         # If the error was caused because the source wasn't a directory
         if e.errno == errno.ENOTDIR:
-            shutil.copy(src, dest)
+            shutil.copy(folderPath, destPath)
         else:
             print('Directory not copied. Error: %s' % e)
-
-    recursiveConversion(src, dest)
-
-def recursiveConversion(src, dest):
-    for root, dirs, files in os.walk(dest):
-        for file in files:
-            if file.endswith(".md"):
-                #call converter here
-                file = os.path.abspath(src + file)
-                print(file)
-                file = Converter.markdown2html(file)
 
 
 
 
 #-------------------------------------------------------------------------------
+copy('Markdown' , "HTML")
 
-copy('Markdown/', 'HTML/')
+#create separate function def checkMDfile): if file.endswith('.md') call converter outputfile = converter.m2h(file) else do nothing return outputFile
+
+
+#-------------------------------------------------------------------------------

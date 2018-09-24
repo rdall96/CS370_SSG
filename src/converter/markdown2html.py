@@ -14,6 +14,8 @@ import os
 import markdown
 import markdown_extensions
 
+HTML_HeaderFile = "src/converter/html_head.txt"
+
 def LOG(string):
     if DEBUG:
         print(string)
@@ -40,7 +42,7 @@ def generateHTMLHeader(file, mode):
     #mode 'o' (opening statements)
     #mode 'c' (closing statements)
     if mode == 'o':
-        headFile = open("html_head.txt", "r", 0)
+        headFile = open(HTML_HeaderFile, "r", 0)
         file.write(headFile.read())
         headFile.close()
     elif mode == 'c':
@@ -57,10 +59,17 @@ def createHTML(fileName):
 
 def parseMarkdown(mFile, htmlFile):
     #call Markdown library to open the textFile and read it
-    input_file = open(mFile, "r", 0)
+    try:
+        input_file = open(mFile, "r", 0)
+    except OSError as e:
+        LOG("Cannot open the target file: " + mFile)
+        LOG("Perhaps the path to the file is incorrect?")
+        LOG(e)
     text = input_file.read()
     #input the contents of the markdown file into the html file
-    html = markdown.markdown(text, ['markdown_extensions'])
+    #FIXME: extensions disabled, curerntly not working due to directory hierarchy
+    #html = markdown.markdown(text, ['markdown_extensions'])
+    html = markdown.markdown(text)
     #write the converted html text to the html file
     htmlFile.write(html)
     return htmlFile

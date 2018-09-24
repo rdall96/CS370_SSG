@@ -2,7 +2,7 @@
 
 #----------------------------------------------------------------------
 # Static Site Generator
-# Author: CS 370 group
+# Author: Ricky Dall'Armellina
 # Date: 09/6/2018
 #
 # Description: This application takes a folder of markdown files and
@@ -10,10 +10,14 @@
 #              separate folder with the correct hierarchy.
 #----------------------------------------------------------------------
 
-DEBUG = True
+DEBUG = False
 
 # Import statements
-import src.markdown2html as Converter
+import os, shutil
+import src.converter.markdown2html as Converter
+import src.navigator.dirNaviV1 as DirNavigator
+import src.stubber.Stubber as Stubber
+import src.copier.fileCopy as Copier
 
 # Other functions
 
@@ -21,43 +25,57 @@ def LOG(string):
     if DEBUG:
         print(string)
 
-def getSourcePath():
-    LOG("Insert path to markdown documents: ")
-    return raw_input()
+def getFullPath(folder):
+    return os.path.abspath(folder + '/')
 
-def selectTheme():
-    LOG("Choose a theme: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
+def selectTheme(destFolder):
+    print("Choose a theme: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
     themeOption = raw_input()
     if themeOption == '1':
         #light theme selected
         LOG("Light theme choosen")
-        return "light_theme"
+        theme = "light_theme"
     elif themeOption == '2':
         #dark theme selected
         LOG("Dark theme choosen")
-        return "dark_theme"
+        theme = "dark_theme"
     elif themeOption == '3':
         #dark theme selected
         LOG("Fun theme choosen")
-        return "fun_theme"
+        theme = "fun_theme"
     else:
         LOG("The selcted theme does not exist")
+    themePath = "Themes/" + theme + ".css"
+    shutil.copy2(themePath, (destFolder + "/styles.css"))
+
+def addStubs(folder):
+    for srcDir, dirs, files in os.walk(folder):
+        for file_ in files:
+            LOG(file_)
+            if file_.endswith(".md"):
+                Stubber.stubGen(srcDir + '/' + file_)
+            else:
+                LOG("Not a markdown file, skipping it...")
+
 
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
-print(" - Welcome to the Static Site Generator! - ")
+
+print("\n - Welcome to the Static Site Generator! - \n")
 
 # Ask user for folder path with markdown files
-markdownFolder = getSourcePath()
+markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
+htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 
-# Ask user to pick a theme for the website
-userTheme = selectTheme()
+# Analyze folder and build stub dictonary # Call Stubber
+addStubs(getFullPath(markdownFolder))
 
-# Analyze folder and build stub dictonary
-
-
-# Create 'HTML' folder with same hierarchy as 'Markdown' folder
-
-
+# Convert Markdown files to HTML
 # Copy files to 'HTML' folder
-# If the file's extension is '.md' then convert it
+Copier.fileCopy(markdownFolder, htmlFolder)
+
+
+# Ask user to pick a theme for the website and copy it
+selectTheme(htmlFolder)
+
+print("DONE!")
