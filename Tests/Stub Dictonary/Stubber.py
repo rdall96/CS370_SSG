@@ -29,12 +29,12 @@ def createDict(pathTemp):
         if os.path.isfile(pathTemp):
 
                 #if file is .md put in fileDictMD
-                test = pathTemp[pathTemp.index("."):]
-                print(test)
                 if pathTemp[pathTemp.index("."):] == ".md":
 
                     #get stub from pathTemp
-                    stubTemp = pathTemp[pathTemp.index("-")+1:pathTemp.index(".")]
+                    pathTempRevrs = pathTemp[::-1]
+                    stubTemp = pathTempRevrs[pathTempRevrs.index(".")+1:pathTempRevrs.index("-")]
+                    stubTemp = stubTemp[::-1]
 
                     #store path/stub in dict
                     fileDictMD[pathTemp] = stubTemp
@@ -48,17 +48,17 @@ def createDict(pathTemp):
                     output.close()
 
                 else:
-            # if file is not .md put in fileDictOther
-                # get stub from pathTemp
+                    #if file is not .md put in fileDictOther
+                    #get stub from pathTemp
                     stubTemp = pathTemp[pathTemp.index("-") + 1:pathTemp.index(".")]
 
-                # store path/stub in dict
+                    # store path/stub in dict
                     fileDictOther[pathTemp] = stubTemp
 
-                # create json of sorted dict
+                    # create json of sorted dict
                     fileDictJsonOther = json.dumps(collections.OrderedDict(sorted(fileDictOther.items())))
 
-                # open output file and write ordered dict then close file
+                    # open output file and write ordered dict then close file
                     output = open("Dictionary_output_other.txt", "w")
                     output.write(fileDictJsonOther)
                     output.close()
@@ -69,11 +69,17 @@ def getPath(stubTemp):
     #Creates global 'Path Temp'
     global pathTemp
 
-    #if stub is in dict continue
-    if stubTemp in fileDict.values():
+    #if stub is in dictMD continue
+    if stubTemp in fileDictMD.values():
 
         #pathTemp is the file path associcated with the stub
-        pathTemp = list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]
+        pathTemp = list(fileDictMD.keys())[list(fileDictMD.values()).index(stubTemp)]
+
+    #if stub is in dictOther continue
+    if stubTemp in fileDictOther.values():
+
+        #pathTemp is the file path associcated with the stub
+        pathTemp = list(fileDictOther.keys())[list(fileDictOther.values()).index(stubTemp)]
 
 
 def getStub(pathTemp):
@@ -81,31 +87,35 @@ def getStub(pathTemp):
     #creates global 'stubTemp'
     global stubTemp
 
-    #if pathTemp is in dict continue
-    if pathTemp in fileDict.keys():
+    #if pathTemp is in dictMD continue
+    if pathTemp in fileDictMD.keys():
 
         #stubTemp is the stub associcated with the path
-        stubTemp = fileDict[pathTemp]
+        stubTemp = fileDictMD[pathTemp]
+
+    #if pathTemp is in dictOther continue
+    if pathTemp in fileDictOther.keys():
+
+        #stubTemp is the stub associated with the path
+        stubTemp = fileDictOther[pathTemp]
 
 
-def changePath(stubTemp, pathTemp):
-
-    #if stub is in dict continute
-    if stubTemp in fileDict.values():
-
-        #delete the path/stub from dict
-        del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
-
-        #store path/stub in dict
-        fileDict[pathTemp] = stubTemp
-
-        #create json of ordered dict
-        fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-
-        #open output, write dict then close
-        output = open("Dictionary_output.txt", "w")
-        output.write(fileDictJson)
-        output.close()
-
-
-createDict(r'C:\Users\derek\Desktop\testfile-56789.md')
+#Not currently working
+#def changePath(stubTemp, pathTemp):
+#
+#    #if stub is in dict continute
+#    if stubTemp in fileDict.values():
+#
+#        #delete the path/stub from dict
+#        del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
+#
+#        #store path/stub in dict
+#        fileDict[pathTemp] = stubTemp
+#
+#        #create json of ordered dict
+#        fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+#
+#        #open output, write dict then close
+#        output = open("Dictionary_output.txt", "w")
+#        output.write(fileDictJson)
+#        output.close()
