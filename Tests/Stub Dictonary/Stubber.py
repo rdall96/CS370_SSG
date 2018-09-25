@@ -1,5 +1,7 @@
 #Stub dictionary
 #READ ME
+#IMPORTANT: STUB SYNTAX "'FILEPATH'-'STUB'.'FILE TYPE'"
+#EX: C:\Users\Derek\Desktop\Test-1234.txt stub=1234
 #Pass store a file path and it will get the stub, enter it into the dict and write to the output file
 #Pass getPath a stub and it will return the path associated with that stub
 #Pass getStub a path and it will return the stub associated with that path
