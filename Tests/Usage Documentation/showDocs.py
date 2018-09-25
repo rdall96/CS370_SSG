@@ -23,8 +23,6 @@ def LOG(string):
     if DEBUG:
         print(string)
 
-#def showDocs(argValue):
-
 def createFile():
     # creates the first time use file and adds the following contents to it
     f = open(FIRST_USE_FILE, 'w+', 0)
@@ -40,6 +38,8 @@ def openDocs():
     #webbrowser.open_new_tab(USAGE_DOC)
     webbrowser.open(USAGE_DOC, new=0, autoraise=True)
 
+#def showDocs(argValue):
+
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
 
@@ -54,7 +54,7 @@ if not isFirstUse:
     LOG("File does not exist, creating it...\n")
     createFile()
     # open the documentation
-    # [insert code here]
+    openDocs()
 else:
     LOG("File exists\n")
 
