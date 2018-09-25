@@ -13,6 +13,7 @@ import string
 import collections
 import json
 
+global fileDict
 fileDict = {}
 
 
