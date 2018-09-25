@@ -1,63 +1,81 @@
-#Stub generator and dictionary
+#Stub dictionary
 #READ ME
-#Pass stubGen a file path to generate a stub, write it to the file, and add it to the dict
-#Pass stubCheck a file path and stub to check if they match, if not, delete that line from dict
-#and add the new file path and stub to the dict
+#IMPORTANT: STUB SYNTAX "'FILEPATH'-'STUB'.'FILE TYPE'"
+#EX: C:\Users\Derek\Desktop\Test-1234.txt stub=1234
+#Pass store a file path and it will get the stub, enter it into the dict and write to the output file
+#Pass getPath a stub and it will return the path associated with that stub
+#Pass getStub a path and it will return the stub associated with that path
+#Pass changePath a stub and a new path and it will update the dictionary
 #The dictionary will be written to Dictionary_output.txt
-#Derek Connelly 9/4/18
+#Derek Connelly 9/24/18
 
-
-import random
 import string
 import collections
 import json
 
+global fileDict
 fileDict = {}
 
 
-def stubGen(pathTemp):
+def createDict(pathTemp):
+
+    #if the file path is not found in the dictionary continue
     if pathTemp not in fileDict.keys():
-        stubTemp = ""
-        for x in range(4):
-            temp = random.randint(0, 1)
-            if temp == 1:
-                stubTemp = stubTemp + str(random.randint(0, 9))
-            else:
-                stubTemp = stubTemp + random.choice(string.ascii_letters)
-        if stubTemp in fileDict.values():
-            goto(20)
+
+        #get stub from pathTemp
+        stubTemp = pathTemp[pathTemp.index("-")+1:pathTemp.index(".")]
+
+        #store path/stub in dict
         fileDict[pathTemp] = stubTemp
-        fileDictJson= json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+
+        #create json of sorted dict
+        fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+
+        #open output file and write ordered dict then close file
         output = open("Dictionary_output.txt", "w")
         output.write(fileDictJson)
         output.close()
-        line = '<!-- ' + stubTemp + '-->\n'
-        f = open(pathTemp, "r+")
-        file_data = f.read()
-        f.seek(0,0)
-        f.write(line.rstrip('\r\n') + '\n' + file_data)
-        f.close()
 
 
-def stubCheck(pathTemp, stubTemp):
-        if stubTemp in fileDict.values() and (list(fileDict.keys())[list(fileDict.values()).index(stubTemp)] != pathTemp):
-            del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
-            fileDict[pathTemp] = stubTemp
-            fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-            output = open("Dictionary_output.txt", "w")
-            output.write(fileDictJson)
-            output.close()
+def getPath(stubTemp):
+
+    #Creates global 'Path Temp'
+    global pathTemp
+
+    #if stub is in dict continue
+    if stubTemp in fileDict.values():
+
+        #pathTemp is the file path associcated with the stub
+        pathTemp = list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]
 
 
-def loadDict(nfile):
-    with open(nfile, 'r') as inf:
-        fileDict = eval(inf.read())
-    fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-    output = open("Dictionary_output.txt", "w")
-    output.write(fileDictJson)
-    output.close()
+def getStub(pathTemp):
+
+    #creates global 'stubTemp'
+    global stubTemp
+
+    #if pathTemp is in dict continue
+    if pathTemp in fileDict.keys():
+
+        #stubTemp is the stub associcated with the path
+        stubTemp = fileDict[pathTemp]
 
 
-def goto(line):
-    global lineNumber
-    line = lineNumber
+def changePath(stubTemp, pathTemp):
+
+    #if stub is in dict continute
+    if stubTemp in fileDict.values():
+
+        #delete the path/stub from dict
+        del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
+
+        #store path/stub in dict
+        fileDict[pathTemp] = stubTemp
+
+        #create json of ordered dict
+        fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+
+        #open output, write dict then close
+        output = open("Dictionary_output.txt", "w")
+        output.write(fileDictJson)
+        output.close()
