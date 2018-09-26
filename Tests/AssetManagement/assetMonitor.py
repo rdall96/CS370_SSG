@@ -17,11 +17,11 @@ def checkAssetStructure(searchFolder):
         if(not(realPath == dictionary.getPath(assetStub))):
             dictionary.setPath(assetStub, realPath)
 
-def convertAssetStubsToLinks(searchFolder):
-    for root, dirs, files in os.walk(topDirectory):
-        for each line in files:
-            if(line.find("\[.*\]\(.*\)$")):
-                tempStub = line
-                string.replace(line, "^.*\[.*\]\((.*)\)$", "\1")
-                return path
+def convertStubsToLinks(searchFolder):
+    for root, dirs, files in os.walk(searchFolder):
+        if("\.md" in files):
+            for each line in files:
+                if(line.find("\[.*\]\(.*\)$")):
+                    tempStub = line
+                    string.replace(tempStub, "^.*\[.*\]\((.*)\)$", "\1")
     return -1
