@@ -13,6 +13,12 @@ from os.path import join, getsize
 from shutil import copyfile
 import shutil
 
+Debug = True
+
+def prints(string):
+    if Debug:
+        print(string)
+
 #Variables: targetDir is the directory to find
 #           topDirectory is the directory you want to search all the children of
 #Return Value(s): returns the absolute path of the target Directory, or -1 on failure
@@ -21,10 +27,10 @@ import shutil
 def findTargetDir(targetDir, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
         if targetDir in dirs:
-            print targetDir, " found"
-	    path = os.path.dirname(os.path.abspath(__file__))
-            print " Path is ", path
-	    return path
+            prints(targetDir + " found")
+            path = os.path.dirname(os.path.abspath(__file__))
+            prints(" Path is " + path)
+            return path
     return -1
 
 def transcriptTargetFile(targetFilePath, newFilePath):
@@ -33,9 +39,9 @@ def transcriptTargetFile(targetFilePath, newFilePath):
 def findTargetFile(targetFile, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
         if targetFile in files:
-            print targetFile, " found"
+            prints(targetFile + " found")
             path = os.path.dirname(os.path.abspath(__file__))
-            print " Path is ", path
+            prints(" Path is " + path)
             return path
     return -1
 
@@ -44,7 +50,7 @@ def extractStub(targetFile):
         for line in ins:
             if "<!--" in line:
                 stubName = line.split()[1]
-                print "Stub name is " + stubName
+                prints("Stub name is " + stubName)
                 return stubName
     return -1
 
