@@ -74,30 +74,38 @@ def getPath(stubTemp):
 
         #pathTemp is the file path associcated with the stub
         pathTemp = list(fileDictMD.keys())[list(fileDictMD.values()).index(stubTemp)]
+        return pathTemp
 
     #if stub is in dictOther continue
     if stubTemp in fileDictOther.values():
 
         #pathTemp is the file path associcated with the stub
         pathTemp = list(fileDictOther.keys())[list(fileDictOther.values()).index(stubTemp)]
+        return pathTemp
+
+    return -1
 
 
 def getStub(pathTemp):
 
     #creates global 'stubTemp'
-    global stubTemp
+    stubTemp = ""
 
     #if pathTemp is in dictMD continue
     if pathTemp in fileDictMD.keys():
 
         #stubTemp is the stub associcated with the path
         stubTemp = fileDictMD[pathTemp]
+        return stubTemp
 
     #if pathTemp is in dictOther continue
     if pathTemp in fileDictOther.keys():
 
         #stubTemp is the stub associated with the path
         stubTemp = fileDictOther[pathTemp]
+        return stubTemp
+
+    return -1
 
 
 #Not currently working
