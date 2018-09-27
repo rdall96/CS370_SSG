@@ -53,7 +53,9 @@ def createDict(pathTemp):
                 else:
                     #if file is not .md put in fileDictOther
                     #get stub from pathTemp
-                    stubTemp = pathTemp[pathTemp.index("-") + 1:pathTemp.index(".")]
+                    pathTempRevrs = pathTemp[::-1]
+                    stubTemp = pathTempRevrs[pathTempRevrs.index(".") + 1:pathTempRevrs.index("-")]
+                    stubTemp = stubTemp[::-1]
 
                     # store path/stub in dict
                     fileDictOther[pathTemp] = stubTemp
