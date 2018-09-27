@@ -10,7 +10,7 @@
 #              it's the first program execution to show the usuage docs
 #----------------------------------------------------------------------
 
-DEBUG = True
+DEBUG = False
 
 # Import statements
 import sys, os, webbrowser
@@ -38,40 +38,29 @@ def openDocs():
     #webbrowser.open_new_tab(USAGE_DOC)
     webbrowser.open(USAGE_DOC, new=0, autoraise=True)
 
-#def showDocs(argValue):
+def showDocs(argValues):
+    print("Type '-help' when executing the program for usage guide\n")
 
-#----------------------------------------------------------------------
-#----------------------------------------------------------------------
+    # check if firstUse file exists
+    LOG("Checking if first time use file exists: ")
+    isFirstUse = os.path.isfile(FIRST_USE_FILE)
+    if not isFirstUse:
+        # if not create it
+        LOG("File does not exist, creating it...\n")
+        createFile()
+        # open the documentation
+        openDocs()
+    else:
+        LOG("File exists\n")
 
-print("\n - Welcome to the Static Site Generator! - \n")
-print("Type '-help' when executing the program for usage guide\n")
-
-# check if firstUse file exists
-LOG("Checking if first time use file exists: ")
-isFirstUse = os.path.isfile(FIRST_USE_FILE)
-if not isFirstUse:
-    # if not create it
-    LOG("File does not exist, creating it...\n")
-    createFile()
-    # open the documentation
-    openDocs()
-else:
-    LOG("File exists\n")
-
-# REFERENCE:
-# sys.argv[0] = program name
-# sys.argv[1] = first argument
-# len(sys.argv) = number of arguments
-# str(sys.argv) = all arguments
-
-# check for '-help' argument
-# argument list has to be greater than 1 to know there could be a valid arguemnt
-if len(sys.argv) > 1:
-    # loop through all arguments to catch the possible '-help'
-    for arg in sys.argv:
-        if arg == "-help":
-            LOG("'-help' called!")
-            # call show website
-            openDocs()
-else:
-    LOG("No arguments called\n")
+    # check for '-help' argument
+    # argument list has to be greater than 1 to know there could be a valid arguemnt
+    if len(argValues) > 1:
+        # loop through all arguments to catch the possible '-help'
+        for arg in argValues:
+            if arg == "-help":
+                LOG("'-help' called!")
+                # call show website
+                openDocs()
+    else:
+        LOG("No arguments called\n")
