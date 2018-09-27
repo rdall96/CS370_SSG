@@ -19,6 +19,8 @@ global fileDictOther
 
 fileDictMD = {}
 fileDictOther= {}
+global stubList
+stubList = []
 
 def createDict(pathTemp):
 
@@ -36,8 +38,9 @@ def createDict(pathTemp):
                     stubTemp = pathTempRevrs[pathTempRevrs.index(".")+1:pathTempRevrs.index("-")]
                     stubTemp = stubTemp[::-1]
 
-                    #store path/stub in dict
+                    #store path/stub in dict and add to stubList
                     fileDictMD[pathTemp] = stubTemp
+                    stubList.append(stubTemp)
 
                     #create json of sorted dict
                     fileDictJsonMD = json.dumps(collections.OrderedDict(sorted(fileDictMD.items())))
@@ -50,7 +53,9 @@ def createDict(pathTemp):
                 else:
                     #if file is not .md put in fileDictOther
                     #get stub from pathTemp
-                    stubTemp = pathTemp[pathTemp.index("-") + 1:pathTemp.index(".")]
+                    pathTempRevrs = pathTemp[::-1]
+                    stubTemp = pathTempRevrs[pathTempRevrs.index(".") + 1:pathTempRevrs.index("-")]
+                    stubTemp = stubTemp[::-1]
 
                     # store path/stub in dict
                     fileDictOther[pathTemp] = stubTemp
@@ -140,3 +145,7 @@ def changePath(stubTemp, pathTemp):
         output = open("Dictionary_output_other.txt", "w")
         output.write(fileDictJsonOther)
         output.close()
+
+
+def getStubList():
+    return stubList
