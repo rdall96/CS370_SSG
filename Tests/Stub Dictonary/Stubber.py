@@ -66,7 +66,6 @@ def createDict(pathTemp):
 
 def getPath(stubTemp):
 
-    #Creates global 'Path Temp'
     pathTemp = ""
 
     #if stub is in dictMD continue
@@ -88,7 +87,6 @@ def getPath(stubTemp):
 
 def getStub(pathTemp):
 
-    #creates global 'stubTemp'
     stubTemp = ""
 
     #if pathTemp is in dictMD continue
@@ -108,22 +106,37 @@ def getStub(pathTemp):
     return -1
 
 
-#Not currently working
-#def changePath(stubTemp, pathTemp):
-#
-#    #if stub is in dict continute
-#    if stubTemp in fileDict.values():
-#
-#        #delete the path/stub from dict
-#        del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
-#
-#        #store path/stub in dict
-#        fileDict[pathTemp] = stubTemp
-#
-#        #create json of ordered dict
-#        fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-#
-#        #open output, write dict then close
-#        output = open("Dictionary_output.txt", "w")
-#        output.write(fileDictJson)
-#        output.close()
+
+def changePath(stubTemp, pathTemp):
+
+    #if stub is in dict continute
+    if stubTemp in fileDictMD.values():
+
+        #delete the path/stub from dict
+        del fileDictMD[list(fileDictMD.keys())[list(fileDictMD.values()).index(stubTemp)]]
+
+        #store path/stub in dict
+        fileDictMD[pathTemp] = stubTemp
+
+        #create json of ordered dict
+        fileDictJsonMD = json.dumps(collections.OrderedDict(sorted(fileDictMD.items())))
+
+        #open output, write dict then close
+        output = open("Dictionary_output_md.txt", "w")
+        output.write(fileDictJsonMD)
+        output.close()
+
+    if stubTemp in fileDictOther.values():
+        # delete the path/stub from dict
+        del fileDictOther[list(fileDictOther.keys())[list(fileDictOther.values()).index(stubTemp)]]
+
+        # store path/stub in dict
+        fileDictOther[pathTemp] = stubTemp
+
+        # create json of ordered dict
+        fileDictJsonOther = json.dumps(collections.OrderedDict(sorted(fileDictOther.items())))
+
+        # open output, write dict then close
+        output = open("Dictionary_output_other.txt", "w")
+        output.write(fileDictJsonOther)
+        output.close()
