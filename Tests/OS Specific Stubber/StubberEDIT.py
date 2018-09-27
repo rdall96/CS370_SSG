@@ -50,7 +50,7 @@ def getPath(stubTemp):
 
         #pathTemp is the file path associcated with the stub
         pathTemp = list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]
-
+        return pathTemp
 
 def getStub(pathTemp):
 
@@ -83,6 +83,7 @@ def changePath(stubTemp, pathTemp):
         output.write(fileDictJson)
         output.close()
 
+#EDITS START
 def findFile(name, path):
     for root, dirs, files in os.walk(path):
         if name in files:
@@ -98,6 +99,10 @@ def systemCheck():
 
     elif usrPlatform == "Windows":
         PathInput = "C:" + "\\"
+        fullFilePath = findFile(usrFileInput , PathInput)
+#        print fullFilePath
+    elif usrPlatform == "Darwin":
+        PathInput = "/home"
         fullFilePath = findFile(usrFileInput , PathInput)
 #        print fullFilePath
     if os.path.isfile(fullFilePath):
