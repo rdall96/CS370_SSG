@@ -13,9 +13,8 @@
 DEBUG = False
 
 # Import statements
-import os, shutil
+import os, shutil, sys
 import src.converter.markdown2html as Converter
-#import src.navigator.dirNaviV1 as DirNavigator
 import src.docs.showDocs as UsageDocs
 import src.stubber.Stubber as Stubber
 import src.copier.fileCopy as Copier
@@ -63,20 +62,21 @@ def addStubs(folder):
 #----------------------------------------------------------------------
 
 print("\n - Welcome to the Static Site Generator! - \n")
+UsageDocs.showDocs(sys.argv)
 
 # Ask user for folder path with markdown files
-markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
-htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
+#markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
+#htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 
 # Analyze folder and build stub dictonary # Call Stubber
-addStubs(getFullPath(markdownFolder))
+#addStubs(getFullPath(markdownFolder))
 
 # Convert Markdown files to HTML
 # Copy files to 'HTML' folder
-Copier.fileCopy(markdownFolder, htmlFolder)
+#Copier.fileCopy(markdownFolder, htmlFolder)
 
 
 # Ask user to pick a theme for the website and copy it
-selectTheme(htmlFolder)
+#selectTheme(htmlFolder)
 
 print("DONE!")
