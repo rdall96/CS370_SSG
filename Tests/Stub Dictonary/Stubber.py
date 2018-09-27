@@ -67,7 +67,7 @@ def createDict(pathTemp):
 def getPath(stubTemp):
 
     #Creates global 'Path Temp'
-    global pathTemp
+    pathTemp = ""
 
     #if stub is in dictMD continue
     if stubTemp in fileDictMD.values():
