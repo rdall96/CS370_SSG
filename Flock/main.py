@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------
 # Static Site Generator
 # Author: Ricky Dall'Armellina
-# Date: 09/6/2018
+# Date: 09/27/2018
 #
 # Description: This application takes a folder of markdown files and
 #              translates them to a working HTML website, creating a
