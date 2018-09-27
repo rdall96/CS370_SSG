@@ -15,7 +15,8 @@ DEBUG = False
 # Import statements
 import os, shutil
 import src.converter.markdown2html as Converter
-import src.navigator.dirNaviV1 as DirNavigator
+#import src.navigator.dirNaviV1 as DirNavigator
+import src.docs.showDocs as UsageDocs
 import src.stubber.Stubber as Stubber
 import src.copier.fileCopy as Copier
 
