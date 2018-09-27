@@ -3,12 +3,13 @@
 # Author: Lukas Mallory
 # Date: 09/25/2018
 #
-# Description: Determines the user's operating system and checks to see 
+# Description: Determines the user's operating system and checks to see
 # if a given file exists.
 #---------------------------------------------------------------------
 
 import platform
 import os
+import getpass
 import Stubber as Stub
 
 
@@ -20,17 +21,20 @@ def findFile(name, path):
 def systemCheck():
     usrFileInput = raw_input("Enter the file name: ")
     usrPlatform = platform.system()
+    usrName = getpass.getuser()
+#    print usrName
     if usrPlatform == "Linux":
-        PathInput = "/home"
+        PathInput = "/home/" + usrName
         fullFilePath = findFile(usrFileInput , PathInput)
 #        print fullFilePath
 
     elif usrPlatform == "Windows":
-        PathInput = "C:" + "\\"
+        PathInput = "C:\\" + "Users\\" + usrName
         fullFilePath = findFile(usrFileInput , PathInput)
 #        print fullFilePath
+
     elif usrPlatform == "Darwin":
-        PathInput = "/home"
+        PathInput = "/Users/" + usrName
         fullFilePath = findFile(usrFileInput , PathInput)
 #        print fullFilePath
     if os.path.isfile(fullFilePath):
@@ -38,3 +42,7 @@ def systemCheck():
     else:
         print("ERROR!")
 systemCheck()
+
+
+
+#make a program to auto-rename files and put stubs in them
