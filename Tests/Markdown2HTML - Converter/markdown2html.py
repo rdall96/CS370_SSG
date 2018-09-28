@@ -91,3 +91,27 @@ def markdown2html(inputFile):
     generateHTMLHeader(outputFile, "c")
     # return if execute successfully or not
     return EXECUTE_SUCCESSFULLY
+
+def checkIfValid(filePath):
+    # takes the full path of a file to check if it is a valid .md file
+    # returns true when file is valid, false when file is not
+    fileExtension = filePath[:3]
+    if fileExtension != ".md":
+        LOG("Selected file does not have a markdown (.md) extension")
+        return False
+    else:
+        try:
+            # create temporary html file to check if valid upon converison
+            tempHTML = open("testHTML.html", "w+", 0)
+            tempHTML = parseMarkdown(filePath, tempHTML)
+            # check if converted html file is empty
+            if (os.stat(tempHTML).st_stat < 1):
+                #if it's empty, then it wasn't a valid beginning file, because no content
+                LOG("Selected file is not a valid Markdown file")
+                return False
+            else:
+                #file is not empty, soassuming it's valid html
+                return True
+        except:
+            print("Unexpected error occured during valid markdown verification")
+    return
