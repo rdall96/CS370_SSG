@@ -11,6 +11,7 @@ import os
 import dirNaviV1 as Navi
 import Stubber as dictionary
 import string
+import platform
 #checks if any assets in the MD file structure have moved
 #def checkAssetStructure(searchFolder):
 #    for each line in dictionary.getStub():
@@ -21,7 +22,8 @@ import string
 def convertStubsToLinks(searchFolder):
     for root, dirs, files in os.walk(searchFolder):
         if("\.md" in files):
-            mdFilePath = Navi.findTargetFile(files)
+            topDir = platform.system
+            mdFilePath = Navi.findTargetFile(files, topDir)
             with open(files, "r") as ins:
                 for line in ins:
                     if(line.find("\[.*\]\(.*\)$")):
@@ -31,3 +33,4 @@ def convertStubsToLinks(searchFolder):
                         linkPath = dictionary.getPath(tempStub)
                         line.replace(tempStub, linkPath)
     return -1
+
