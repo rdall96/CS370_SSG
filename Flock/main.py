@@ -76,6 +76,7 @@ print("md folder: " + markdownFolder)
 
 # Call stub dictonary generation on destination folder
     # OS specific
+Stubber.populateDict(markdownFolder)
 
 # Check if files are valid
     # Call Asset Monitor
