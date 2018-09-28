@@ -21,6 +21,7 @@ import string
 def convertStubsToLinks(searchFolder):
     for root, dirs, files in os.walk(searchFolder):
         if("\.md" in files):
+            mdFilePath = Navi.findTargetFile(files)
             with open(files, "r") as ins:
                 for line in ins:
                     if(line.find("\[.*\]\(.*\)$")):
