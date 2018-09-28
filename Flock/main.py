@@ -17,6 +17,7 @@ import src.converter.markdown2html as Converter
 import src.docs.showDocs as UsageDocs
 import src.stubber.Stubber as Stubber
 import src.copier.fileCopy as Copier
+import src.assetMonitor as Asset
 
 # Other functions
 
@@ -64,8 +65,11 @@ print("\n - Welcome to the Static Site Generator! - \n")
 UsageDocs.showDocs(sys.argv)
 
 # Ask user for folder path with markdown files
-markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
-htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
+#markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
+#htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
+markdownFolder = raw_input("Insert path to markdown documents: ")
+htmlFolder = raw_input("Insert path to the website folder: ")
+print("md folder: " + markdownFolder)
 
 # Create htmlFolder directory structure
     # Copy all files to it
@@ -75,6 +79,7 @@ htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 
 # Check if files are valid
     # Call Asset Monitor
+Asset.convertStubsToLinks(markdownFolder)
 
 # Convert files
 
