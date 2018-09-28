@@ -7,17 +7,13 @@
 #    Version: Initial                           #
 #    Langauge: Python                           #
 #################################################
+
 import os
-import dirNaviV1 as Navi
-import Stubber as dictionary
+
+import navigator.dirNaviV1 as Navi
+import stubber.Stubber as dictionary
 import string
 import platform
-#checks if any assets in the MD file structure have moved
-#def checkAssetStructure(searchFolder):
-#    for each line in dictionary.getStub():
-#        realPath = Navi.findTargetFile(assetStub, searchFolder)
-#        if(not(realPath == dictionary.getPath(assetStub))):
-#            dictionary.setPath(assetStub, realPath)
 
 def convertStubsToLinks(searchFolder):
     for root, dirs, files in os.walk(searchFolder):
