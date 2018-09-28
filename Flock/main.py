@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 #----------------------------------------------------------------------
 # Static Site Generator
 # Author: Ricky Dall'Armellina
@@ -65,18 +64,23 @@ print("\n - Welcome to the Static Site Generator! - \n")
 UsageDocs.showDocs(sys.argv)
 
 # Ask user for folder path with markdown files
-#markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
-#htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
+markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
+htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 
-# Analyze folder and build stub dictonary # Call Stubber
-#addStubs(getFullPath(markdownFolder))
+# Create htmlFolder directory structure
+    # Copy all files to it
 
-# Convert Markdown files to HTML
-# Copy files to 'HTML' folder
-#Copier.fileCopy(markdownFolder, htmlFolder)
+# Call stub dictonary generation on destination folder
+    # OS specific
 
+# Check if files are valid
+    # Call Asset Monitor
 
-# Ask user to pick a theme for the website and copy it
+# Convert files
+
+# Delete markdown files frm destinantion
+
+# Ask user to pick a theme for the website and copy it to destination folder
 #selectTheme(htmlFolder)
 
 print("DONE!")
