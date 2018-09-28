@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 #----------------------------------------------------------------------
 # Static Site Generator
 # Author: Ricky Dall'Armellina
