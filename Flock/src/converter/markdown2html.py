@@ -114,4 +114,7 @@ def checkIfValid(filePath):
                 return True
         except:
             print("Unexpected error occured during valid markdown verification")
+        # delete temporary html (tempHTML)
+        tempHTML.close()
+        os.remove("testHTML.html")
     return
