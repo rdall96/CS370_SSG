@@ -59,6 +59,7 @@ def createDict(pathTemp):
 
                     # store path/stub in dict
                     fileDictOther[pathTemp] = stubTemp
+                    stubList.append(stubTemp)
 
                     # create json of sorted dict
                     fileDictJsonOther = json.dumps(collections.OrderedDict(sorted(fileDictOther.items())))
