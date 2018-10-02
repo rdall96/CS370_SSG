@@ -9,12 +9,7 @@
 
 DEBUG = False
 
-import os
-import shutil
-import errno
-import checkMD as Checker
-import directoryClean as Cleaner
-from shutil import ignore_patterns
+import os, shutil
 
 def LOG(string):
     if DEBUG:
@@ -28,6 +23,5 @@ def fileCopy(srcDir, destDir):
                 LOG(fullFilePath + "  1")
                 path = os.path.dirname(fullFilePath)
                 path = path.replace("Markdown" , '')
-                Checker.checkMDfile(fullFilePath)
-    shutil.copytree(srcDir, destDir, ignore=ignore_patterns('*.md'))
-    Cleaner.directoryClean(srcDir)
+    shutil.copytree(srcDir, destDir)
+    return True
