@@ -73,13 +73,14 @@ Copier.fileCopy(markdownFolder, htmlFolder)
 
 # Check if files are valid
     # Call Asset Monitor
-Asset.convertStubsToLinks(markdownFolder)
+Asset.convertStubsToLinks(htmlFolder)
 
 # Convert files
-
-# Delete markdown files frm destinantion
+Converter.convertAllMarkdown(htmlFolder)
+# Delete markdown files from destinantion
+Copier.deleteMD(htmlFolder)
 
 # Ask user to pick a theme for the website and copy it to destination folder
-#selectTheme(htmlFolder)
+selectTheme(htmlFolder)
 
 print("DONE!")
