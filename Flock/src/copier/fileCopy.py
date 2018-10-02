@@ -34,7 +34,7 @@ def deleteMD(folder):
     # loop through files and directories and remove markdown files from it
     for root, dirs, files in os.walk(folder):
         for fileName in files:
-            if fileName.endswidth(".md"):
+            if fileName.endswith(".md"):
                 try:
                     LOG("Removing markdown file directory")
                     os.remove(os.path.join(root, fileName))
