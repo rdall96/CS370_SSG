@@ -82,6 +82,7 @@ def parseMarkdown(mFile, htmlFile):
     return htmlFile
 
 def markdown2html(inputFile):
+    # inputFile is the full path to the file to convert
     LOG("- Markdown to HTML Python Translator -\n")
     # create html file
     htmlFile = createHTML(inputFile)
@@ -117,4 +118,4 @@ def checkIfValid(filePath):
         # delete temporary html (tempHTML)
         tempHTML.close()
         os.remove("testHTML.html")
-    return
+    return True
