@@ -71,11 +71,11 @@ def createDict(pathTemp):
                     fileDictJsonOther = json.dumps(collections.OrderedDict(sorted(fileDictOther.items())))
 
                     # open output file and write ordered dict then close file
-                    os.chmod("Dictionary_output_md.txt", S_IWUSR | S_IREAD)
+                    os.chmod("Dictionary_output_other.txt", S_IWUSR | S_IREAD)
                     output = open("Dictionary_output_md.txt", "w")
                     output.write(fileDictJsonOther)
                     output.close()
-                    os.chmod("Dictionary_output_md.txt", S_IREAD | S_IRGRP | S_IROTH)
+                    os.chmod("Dictionary_output_other.txt", S_IREAD | S_IRGRP | S_IROTH)
     return
 
 def populateDict(folder):
@@ -161,8 +161,8 @@ def changePath(stubTemp, pathTemp):
 
         # open output, write dict then close
         os.chmod("Dictionary_output_md.txt", S_IWUSR | S_IREAD)
-        output = open("Dictionary_output_md.txt", "w")
-        output.write(fileDictJsonMD)
+        output = open("Dictionary_output_other.txt", "w")
+        output.write(fileDictJsonOther)
         output.close()
         os.chmod("Dictionary_output_other.txt", S_IREAD | S_IRGRP | S_IROTH)
 
