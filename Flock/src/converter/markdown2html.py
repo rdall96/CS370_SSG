@@ -119,3 +119,16 @@ def checkIfValid(filePath):
         tempHTML.close()
         os.remove("testHTML.html")
     return True
+
+def convertAllMarkdown(folder):
+    # Converts all markdown files in the selected directory
+    filesConverted = 0 # number of files converted
+    for root, dirs, files in os.walk(folder):
+        for fileName in files:
+            if fileName.endswidth(".md"):
+                filePath = os.path.join(root , file)
+                # call conversion
+                markdown2html(filePath)
+                # add one to converted files counter
+                filesConverted += 1
+    return EXECUTE_SUCCESSFULLY
