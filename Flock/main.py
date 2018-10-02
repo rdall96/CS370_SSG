@@ -58,29 +58,34 @@ print("\n - Welcome to the Static Site Generator! - \n")
 UsageDocs.showDocs(sys.argv)
 
 # Ask user for folder path with markdown files
-#markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
-#htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
-markdownFolder = input("Insert path to markdown documents: ")
-htmlFolder = input("Insert path to the website folder: ")
+# call Lukes OS specific folder finder
+markdownFolder = getFullPath(input("Insert path to markdown documents: "))
+htmlFolder = getFullPath(input("Insert path to the website folder: "))
 
 # Create htmlFolder directory structure
     # Copy all files to it
+LOG("\ncopying files")
 Copier.fileCopy(markdownFolder, htmlFolder)
 
 # Call stub dictonary generation on destination folder
     # OS specific
-#Stubber.populateDict(markdownFolder)
+LOG("\ngenerating dictonary")
+#Stubber.something......
 
 # Check if files are valid
     # Call Asset Monitor
+LOG("\nmigrating links")
 Asset.convertStubsToLinks(htmlFolder)
 
 # Convert files
+LOG("\nconverting files")
 Converter.convertAllMarkdown(htmlFolder)
 # Delete markdown files from destinantion
+LOG("\ndeleting original .md files from destination")
 Copier.deleteMD(htmlFolder)
 
 # Ask user to pick a theme for the website and copy it to destination folder
+LOG("\nselecting theme")
 selectTheme(htmlFolder)
 
 print("DONE!")
