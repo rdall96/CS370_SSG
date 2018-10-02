@@ -17,12 +17,14 @@ import src.converter.markdown2html as Converter
 import src.docs.showDocs as UsageDocs
 import src.stubber.Stubber as Stubber
 import src.copier.fileCopy as Copier
+import src.assetMonitor as Asset
 
 # Other functions
 
 def LOG(string):
     if DEBUG:
         print(string)
+    return
 
 def getFullPath(folder):
     return os.path.abspath(folder + '/')
@@ -46,15 +48,7 @@ def selectTheme(destFolder):
         LOG("The selcted theme does not exist")
     themePath = "Themes/" + theme + ".css"
     shutil.copy2(themePath, (destFolder + "/styles.css"))
-
-def addStubs(folder):
-    for srcDir, dirs, files in os.walk(folder):
-        for file_ in files:
-            LOG(file_)
-            if file_.endswith(".md"):
-                Stubber.stubGen(srcDir + '/' + file_)
-            else:
-                LOG("Not a markdown file, skipping it...")
+    return True
 
 
 #----------------------------------------------------------------------
@@ -64,17 +58,22 @@ print("\n - Welcome to the Static Site Generator! - \n")
 UsageDocs.showDocs(sys.argv)
 
 # Ask user for folder path with markdown files
-markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
-htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
+#markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
+#htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
+markdownFolder = input("Insert path to markdown documents: ")
+htmlFolder = input("Insert path to the website folder: ")
 
 # Create htmlFolder directory structure
     # Copy all files to it
+Copier.fileCopy(markdownFolder, htmlFolder)
 
 # Call stub dictonary generation on destination folder
     # OS specific
+#Stubber.populateDict(markdownFolder)
 
 # Check if files are valid
     # Call Asset Monitor
+Asset.convertStubsToLinks(markdownFolder)
 
 # Convert files
 
