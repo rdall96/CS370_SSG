@@ -13,6 +13,7 @@ import string
 import collections
 import json
 import os
+from stat import S_IREAD, S_IRGRP, S_IROTH, S_IWUSR
 
 global fileDictMD
 global fileDictOther
@@ -49,9 +50,11 @@ def createDict(pathTemp):
                     fileDictJsonMD = json.dumps(collections.OrderedDict(sorted(fileDictMD.items())))
 
                     #open output file and write ordered dict then close file
+                    os.chmod("Dictionary_output_md.txt", S_IWUSR | S_IREAD)
                     output = open("Dictionary_output_md.txt", "w")
                     output.write(fileDictJsonMD)
                     output.close()
+                    os.chmod("Dictionary_output_md.txt", S_IREAD | S_IRGRP | S_IROTH)
 
                 else:
                     #if file is not .md put in fileDictOther
@@ -62,14 +65,17 @@ def createDict(pathTemp):
 
                     # store path/stub in dict
                     fileDictOther[pathTemp] = stubTemp
+                    stubList.append(stubTemp)
 
                     # create json of sorted dict
                     fileDictJsonOther = json.dumps(collections.OrderedDict(sorted(fileDictOther.items())))
 
                     # open output file and write ordered dict then close file
-                    output = open("Dictionary_output_other.txt", "w")
+                    os.chmod("Dictionary_output_other.txt", S_IWUSR | S_IREAD)
+                    output = open("Dictionary_output_md.txt", "w")
                     output.write(fileDictJsonOther)
                     output.close()
+                    os.chmod("Dictionary_output_other.txt", S_IREAD | S_IRGRP | S_IROTH)
     return
 
 def populateDict(folder):
@@ -137,9 +143,11 @@ def changePath(stubTemp, pathTemp):
         fileDictJsonMD = json.dumps(collections.OrderedDict(sorted(fileDictMD.items())))
 
         #open output, write dict then close
-        output = open(dictonaryOutFile, "w")
+        os.chmod("Dictionary_output_md.txt", S_IWUSR | S_IREAD)
+        output = open("Dictionary_output_md.txt", "w")
         output.write(fileDictJsonMD)
         output.close()
+        os.chmod("Dictionary_output_md.txt", S_IREAD | S_IRGRP | S_IROTH)
 
     if stubTemp in fileDictOther.values():
         # delete the path/stub from dict
@@ -152,9 +160,11 @@ def changePath(stubTemp, pathTemp):
         fileDictJsonOther = json.dumps(collections.OrderedDict(sorted(fileDictOther.items())))
 
         # open output, write dict then close
+        os.chmod("Dictionary_output_md.txt", S_IWUSR | S_IREAD)
         output = open("Dictionary_output_other.txt", "w")
         output.write(fileDictJsonOther)
         output.close()
+        os.chmod("Dictionary_output_other.txt", S_IREAD | S_IRGRP | S_IROTH)
 
 
 def getStubList():
