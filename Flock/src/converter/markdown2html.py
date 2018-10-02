@@ -16,7 +16,8 @@ import os
 import markdown
 import markdown_extensions
 
-HTML_HeaderFile = "html_head.txt"
+HTML_HEADER_FILE = "src/converter/html_head.txt"
+EXTENSIONS_FILE = "src/converter/markdown_extensions.py"
 EXECUTE_SUCCESSFULLY = False
 
 def LOG(string):
@@ -35,7 +36,7 @@ def generateHTMLHeader(file, mode):
     # mode 'o' (opening statements)
     # mode 'c' (closing statements)
     if mode == 'o':
-        headFile = open(HTML_HeaderFile, "r", 0)
+        headFile = open(HTML_HEADER_FILE, "r", 0)
         file.write(headFile.read())
         # close the header file
         headFile.close()
@@ -60,11 +61,13 @@ def parseMarkdown(mFile, htmlFile):
     # try catch in case the file can't open, can't be read or can't be converted
     try:
         # open the textFile and read it
+        print("--- " + mFile)
         input_file = open(mFile, "r", 0)
         # read inputFile as a string
         text = input_file.read()
         # converter returns an HTML string of text
-        html = markdown.markdown(text, ['markdown_extensions'])
+        #html = markdown.markdown(text, [EXTENSIONS_FILE])
+        html = markdown.markdown(text)
         # write the converted html text to the html file
         htmlFile.write(html)
         EXECUTE_SUCCESSFULLY = True
@@ -111,7 +114,7 @@ def checkIfValid(filePath):
                 LOG("Selected file is not a valid Markdown file")
                 return False
             else:
-                #file is not empty, soassuming it's valid html
+                #file is not empty, so assuming it's valid html
                 return True
         except:
             print("Unexpected error occured during valid markdown verification")
@@ -125,10 +128,11 @@ def convertAllMarkdown(folder):
     filesConverted = 0 # number of files converted
     for root, dirs, files in os.walk(folder):
         for fileName in files:
-            if fileName.endswidth(".md"):
-                filePath = os.path.join(root , file)
+            if fileName.endswith(".md"):
+                filePath = os.path.join(root , fileName)
                 # call conversion
                 markdown2html(filePath)
                 # add one to converted files counter
                 filesConverted += 1
+    LOG(("Converted " + (str)(filesConverted) + " files"))
     return EXECUTE_SUCCESSFULLY
