@@ -61,7 +61,7 @@ def parseMarkdown(mFile, htmlFile):
     # try catch in case the file can't open, can't be read or can't be converted
     try:
         # open the textFile and read it
-        print("--- " + mFile)
+        LOG("--- " + mFile)
         input_file = open(mFile, "r", 0)
         # read inputFile as a string
         text = input_file.read()
@@ -135,4 +135,4 @@ def convertAllMarkdown(folder):
                 # add one to converted files counter
                 filesConverted += 1
     LOG(("Converted " + (str)(filesConverted) + " files"))
-    return EXECUTE_SUCCESSFULLY
+    return filesConverted
