@@ -39,6 +39,6 @@ def deleteMD(folder):
                     LOG("Removing markdown file directory")
                     os.remove(os.path.join(root, fileName))
                 except:
-                    print("Error occured while removing markdown files")
+                    print("An error occured while removing markdown files")
                     return False
     return True
