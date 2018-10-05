@@ -17,9 +17,6 @@ import os
 global fileDictMD
 global fileDictOther
 
-dictonaryOutFile = "Dictionary_output_md.txt"
-dictonaryOutFileOther = "Dictionary_output_other.txt"
-
 fileDictMD = {}
 fileDictOther= {}
 global stubList
@@ -62,6 +59,7 @@ def createDict(pathTemp):
 
                     # store path/stub in dict
                     fileDictOther[pathTemp] = stubTemp
+                    stubList.append(stubTemp)
 
                     # create json of sorted dict
                     fileDictJsonOther = json.dumps(collections.OrderedDict(sorted(fileDictOther.items())))
@@ -70,13 +68,6 @@ def createDict(pathTemp):
                     output = open("Dictionary_output_other.txt", "w")
                     output.write(fileDictJsonOther)
                     output.close()
-    return
-
-def populateDict(folder):
-    for root, dirs, files in os.walk(folder):
-        for fileName in files:
-            createDict(os.path.join(root, fileName))
-    return
 
 
 def getPath(stubTemp):
@@ -137,7 +128,7 @@ def changePath(stubTemp, pathTemp):
         fileDictJsonMD = json.dumps(collections.OrderedDict(sorted(fileDictMD.items())))
 
         #open output, write dict then close
-        output = open(dictonaryOutFile, "w")
+        output = open("Dictionary_output_md.txt", "w")
         output.write(fileDictJsonMD)
         output.close()
 

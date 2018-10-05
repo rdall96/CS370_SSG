@@ -9,15 +9,15 @@
 #              separate folder with the correct hierarchy.
 #----------------------------------------------------------------------
 
-DEBUG = False
+DEBUG = True
 
 # Import statements
 import os, shutil, sys
 import src.converter.markdown2html as Converter
 import src.docs.showDocs as UsageDocs
-import src.stubber.Stubber as Stubber
+import src.stubber.Stubber2 as Stubber
 import src.copier.fileCopy as Copier
-import src.assetMonitor as Asset
+#import src.assetMonitor as Asset
 
 # Other functions
 
@@ -58,28 +58,36 @@ print("\n - Welcome to the Static Site Generator! - \n")
 UsageDocs.showDocs(sys.argv)
 
 # Ask user for folder path with markdown files
-#markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
-#htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
-markdownFolder = input("Insert path to markdown documents: ")
-htmlFolder = input("Insert path to the website folder: ")
+# call Lukes OS specific folder finder
+markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
+htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
 
 # Create htmlFolder directory structure
     # Copy all files to it
+LOG("\ncopying files")
 Copier.fileCopy(markdownFolder, htmlFolder)
 
 # Call stub dictonary generation on destination folder
     # OS specific
-#Stubber.populateDict(markdownFolder)
+LOG("\ngenerating dictonary")
+indexedFiles = Stubber.populateDict(htmlFolder)
+LOG("   Indexed " + (str)(indexedFiles) + " files")
 
 # Check if files are valid
     # Call Asset Monitor
-Asset.convertStubsToLinks(markdownFolder)
+#LOG("\nmigrating links")
+#Asset.convertStubsToLinks(htmlFolder)
 
 # Convert files
-
-# Delete markdown files frm destinantion
+LOG("\nconverting files")
+filesConverted = Converter.convertAllMarkdown(htmlFolder)
+LOG("   Converted " + (str)(filesConverted) + " files")
+# Delete markdown files from destinantion
+LOG("\ndeleting original .md files from destination")
+Copier.deleteMD(htmlFolder)
 
 # Ask user to pick a theme for the website and copy it to destination folder
-#selectTheme(htmlFolder)
+LOG("\nselecting theme")
+selectTheme(htmlFolder)
 
 print("DONE!")
