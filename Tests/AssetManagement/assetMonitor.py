@@ -10,11 +10,10 @@
 
 import os
 
-import navigator.dirNaviV1 as Navi
-import stubber.Stubber as dictionary
+import dirNaviV1 as Navi
+import Stubber as dictionary
 import string
 import platform
-<<<<<<< HEAD
 #checks if any assets in the MD file structure have moved
 def checkAssetStructure(searchFolder):
     stubList = dictionary.getStubList()
@@ -22,26 +21,28 @@ def checkAssetStructure(searchFolder):
         realPath = Navi.findTargetFile(stub, searchFolder)
         if(not(realPath == dictionary.getPath(stub))):
             dictionary.changePath(stub, realPath)
-=======
->>>>>>> 8eb1aa7617f5d5ac9f67b4f1f354338c2e7c9e7a
 
 def convertStubsToLinks(searchFolder):
-    for files in os.walk(searchFolder):
-        if("\.md" in files):
-            topDir = platform.system
-            mdFilePath = Navi.findTargetFile(files, topDir)
-            #Below opens Md file to parse lines
-            with open(mdFilePath, "r+") as ins:
-                for line in ins:
-                    #If statement below checks if the link syntax is in a line
-                    if(line.find("\[.*\]\(.*\)$")):
-                        print("Found link\n")
-                        #Code block below extracts stub, gets the corresponding path from the dictionary
-                        #and replaces the stub in the line with the path from the dictionary
-                        tempStub = line
-                        tempStub.replace( "^.*\[.*\]\((.*)\)$", "\1")
-                        linkPath = dictionary.getPath(tempStub)
-                        line.replace(tempStub, linkPath)
+    for root, dirs, files in os.walk(searchFolder):
+        for filename in files:
+            print(filename)
+            if("\.md" in filename):
+                topDir = platform.system
+                mdFilePath = Navi.findTargetFile(files, topDir)
+                print(mdFilePath)
+                #Below opens Md file to parse lines
+                with open(mdFilePath, "r+") as ins:
+                    for line in ins:
+                        #If statement below checks if the link syntax is in a line
+                        if(line.find("\[.*\]\(.*\)$")):
+                            print("Found link\n")
+                            #Code block below extracts stub, gets the corresponding path from the dictionary
+                            #and replaces the stub in the line with the path from the dictionary
+                            tempStub = line
+                            tempStub.replace( "^.*\[.*\]\((.*)\)$", "\1")
+                            linkPath = dictionary.getPath(tempStub)
+                            line.replace(tempStub, linkPath)
     return -1
 
-dictionary.p\
+dictionary.populateDict(r"C:\Users\Dan\ Levy\Documents\GitHub\CS370_SSG\Tests\AssetManagement\assets")
+convertStubsToLinks("C:\\Users\\Dan\ Levy\\Documents\\GitHub\\CS370_SSG\\Tests\\AssetManagement")
