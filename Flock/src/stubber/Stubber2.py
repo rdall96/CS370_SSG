@@ -30,12 +30,13 @@ import string
 import collections
 import json
 import os
+import ast
 # v2.0 - Removed imports and calls to os.chmod()
 
 global fileDict
 
 # v2.0 - Changed file links to global variable. Easier to move the files in the future
-dictonaryOutFile = "src/stubber/Dictionary_output.txt"
+dictonaryOutFile = "Dictionary_output.txt"
 
 fileDict = {}
 # v2.0 - Removed second dictonary
@@ -116,9 +117,40 @@ def getStub(pathTemp):
     return -1
 
 
-# v2.0 - Removed changePath(). Not of any use at the moment
+def changePath(stubTemp, pathTemp):
+
+    #if stub is in dict continute
+    if stubTemp in fileDict.values():
+
+        #delete the path/stub from dict
+        del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
+
+        #store path/stub in dict
+        fileDict[pathTemp] = stubTemp
+
+        #create json of ordered dict
+        fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+
+        #open output, write dict then close
+        output = open("Dictionary_output.txt", "w")
+        output.write(fileDictJson)
+        output.close()
 
 
 def getStubList():
     LOG("\n" + (str)(stubList) + "\n")
     return stubList
+
+def loadDict(nfile):
+    #pass the path of a txt file that a dictionary was written to
+    #and fileDict will become that dictionary
+    global fileDict
+    with open(nfile, 'r') as f:
+        s = f.read()
+        fileDict = ast.literal_eval(s)
+    fileDictJson = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
+    output = open("Dictionary_output.txt", "w")
+    output.write(fileDictJson)
+    output.close()
+    print(fileDict)
+
