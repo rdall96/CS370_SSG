@@ -17,6 +17,7 @@ import src.converter.markdown2html as Converter
 import src.docs.showDocs as UsageDocs
 import src.stubber.Stubber2 as Stubber
 import src.copier.fileCopy as Copier
+import src.OScheckLooper as OSutil
 #import src.assetMonitor as Asset
 
 # Other functions
@@ -59,8 +60,11 @@ UsageDocs.showDocs(sys.argv)
 
 # Ask user for folder path with markdown files
 # call Lukes OS specific folder finder
-markdownFolder = getFullPath(raw_input("Insert path to markdown documents: "))
-htmlFolder = getFullPath(raw_input("Insert path to the website folder: "))
+markdownFolder = OSutil.systemCheck(raw_input("Insert path to markdown documents: "))
+#LOG("Source folder:  " + markdownFolder)
+# Adding '/www' to the destination path to make sure it's an non-existing path to save the website
+htmlFolder = OSutil.systemCheck(raw_input("Insert path to the website folder: ")) + "/www"
+#LOG("Destination folder:  " + htmlFolder)
 
 # Create htmlFolder directory structure
     # Copy all files to it
