@@ -30,7 +30,7 @@ def convertStubsToLinks(searchFolder):
     for root, dirs, files in os.walk(searchFolder):
         for filename in files:
             if(".md" in filename):
-                topDir = "assets"
+                topDir = searchFolder
                 mdFilePath = os.path.join(root, filename)
                 #Below opens Md file to parse lines and creates temp file to store new lines
                 fh, absPath = mkstemp()
@@ -50,17 +50,19 @@ def convertStubsToLinks(searchFolder):
                                         stubInDict = True
                                 if(stubInDict == False):
                                     print("Stub, ", tempStub, ", not in dictionary")
-                                #Getting path of the link and replacing all "\" with "\\" to prevent \n, \t, etc.
-                                linkPath = dictionary.getPath(tempStub)
-                                linkPath = re.sub(r"\\", r"\\\\", linkPath)
-                                print("Path of link is ", linkPath)
+
                                 #Code block below extracts stub, gets the corresponding path from the dictionary
                                 #and replaces the stub in the line with the path from the dictionary
+                                linkPath = dictionary.getPath(tempStub)
                                 if(linkPath == -1):
                                     print("Stub, ", tempStub, ", corresponding path not found in dictionary")
                                     print("Substitution will not be carried out, check stubs in files for errors.")
                                     new_file.write(line)
                                 else:
+                                    #Getting path of the link and replacing all "\" with "\\" to prevent \n, \t, etc.
+                                    linkPath = re.sub(r"\\", r"\\\\", linkPath)
+                                    linkPath = "\(" + linkPath + "\)"
+                                    tempStub = "\(" + tempStub + "\)"
                                     tempLine = line
                                     tempLine = re.sub(tempStub, linkPath, tempLine)
                                     new_file.write(tempLine)
@@ -73,5 +75,5 @@ def convertStubsToLinks(searchFolder):
 
     return -1
 #These function calls below are for testing
-dictionary.populateDict(r"assets")
-convertStubsToLinks(r"assets")
+#dictionary.populateDict(r"assets")
+#convertStubsToLinks(r"assets")
