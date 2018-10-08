@@ -1,4 +1,4 @@
-# It linked
+# Heading 1
 ## Heading 2
 ### Heading 3
 
@@ -8,6 +8,6 @@
 
 * ***bold-italic***
 
-[link](assets\testmd-qqbang.md)
+[link](https://blog.ghost.org/markdown/)
 
 > To suck it or not to suck it. That is the question.

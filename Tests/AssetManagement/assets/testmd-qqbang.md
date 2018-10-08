@@ -8,6 +8,6 @@
 
 * ***bold-italic***
 
-[link](https://blog.ghost.org/markdown/)
+[link](assets\markdownTest2-luck.md)
 
 > To suck it or not to suck it. That is the question.

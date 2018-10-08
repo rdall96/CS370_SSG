@@ -1,0 +1,1 @@
+{"assets\\markdownTest2-luck.md": "luck", "assets\\testmd-qqbang.md": "qqbang"}
