@@ -45,6 +45,9 @@ stubList = []
 
 # v2.0 - Renamed to addToDict(), which makes more sense given the purpose of the function
 def addToDict(pathTemp):
+    # check if path ands with ".md" and if so replace with ".html"
+    if pathTemp.endswith(".md"):
+        pathTemp = pathTemp[:-3] + ".html"
     #if the file path is not found in the dictionary continue
     if pathTemp not in fileDict.keys():
         # v2.0 - Removed check if file exists. FIle is valid since it's fed by populateDict() which parses through files only
