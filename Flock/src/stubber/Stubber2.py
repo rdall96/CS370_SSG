@@ -31,6 +31,7 @@ import collections
 import json
 import os
 import ast
+import re
 # v2.0 - Removed imports and calls to os.chmod()
 
 global fileDict
@@ -81,7 +82,10 @@ def populateDict(folder):
     for root, dirs, files in os.walk(folder):
         for fileName in files:
             # v2.0 - Renamed function call according to changes
-            addToDict(os.path.join(root, fileName))
+            filePath = os.path.join(root, fileName)
+            # remove top fiolder from file path for correct linking
+            filePath = re.sub((folder + "/"), "", filePath)
+            addToDict(filePath)
             filesStubbed += 1
     LOG("\nStubbed " + (str)(filesStubbed) + " files\n")
     # v2.0 - Returning number of files stubbed. Maybe useful to print back to the user?
