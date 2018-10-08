@@ -8,6 +8,6 @@
 
 * ***bold-italic***
 
-[link](qqbang)
+Here's some luck: [some qqbang](assets\testmd-qqbang.md)
 
 > To suck it or not to suck it. That is the question.

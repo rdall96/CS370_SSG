@@ -12,8 +12,8 @@
 from tempfile import mkstemp
 from shutil import move
 from os import fdopen, remove
-import dirNaviV2 as Navi
-import Stubber2 as dictionary
+import test_monitor.dirNaviV2 as Navi
+import dictionary.Stubber2 as dictionary
 import string
 import re
 import os
@@ -61,7 +61,7 @@ def convertStubsToLinks(searchFolder):
                                 else:
                                     #Getting path of the link and replacing all "\" with "\\" to prevent \n, \t, etc.
                                     linkPath = re.sub(r"\\", r"\\\\", linkPath)
-                                    linkPath = "\(" + linkPath + "\)"
+                                    linkPath = "(" + linkPath + ")"
                                     tempStub = "\(" + tempStub + "\)"
                                     tempLine = line
                                     tempLine = re.sub(tempStub, linkPath, tempLine)
@@ -75,5 +75,5 @@ def convertStubsToLinks(searchFolder):
 
     return -1
 #These function calls below are for testing
-#dictionary.populateDict(r"assets")
-#convertStubsToLinks(r"assets")
+#dictionary.populateDict(r"test_monitor")
+#convertStubsToLinks(r"test_monitor")
