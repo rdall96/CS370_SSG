@@ -32,7 +32,7 @@ def convertStubsToLinks(searchFolder):
             if(".md" in filename):
                 topDir = "assets"
                 mdFilePath = os.path.join(root, filename)
-               #Below opens Md file to parse lines and creates temp fiel to store new lines
+               #Below opens Md file to parse lines and creates temp file to store new lines
                 fh, absPath = mkstemp()
                 with fdopen(fh,'w') as new_file:
                     with open(mdFilePath, "r+") as old_file:

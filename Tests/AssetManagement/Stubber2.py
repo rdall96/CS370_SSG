@@ -26,11 +26,15 @@ def LOG(string):
         print(string)
     return
 
+from tempfile import mkstemp
+from shutil import move
+from os import fdopen, remove
 import platform
 import string
 import collections
 import json
 import os
+import re
 import dirNaviV2 as Navi
 # v2.0 - Removed imports and calls to os.chmod()
 
@@ -119,25 +123,34 @@ def getStub(pathTemp):
 
 
 def changePath(stubTemp, newPath):
-
+    newPath = re.sub(r"\\", r"\\\\", newPath)
     #if stub is in dict continute
     if stubTemp in fileDict.values():
 
         #delete the path/stub from dict
         del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
 
-        #store path/stub in dict
-        fileDict[pathTemp] = stubTemp
-
-        #create json of ordered dict
-        fileDictJsonMD = json.dumps(collections.OrderedDict(sorted(fileDict.items())))
-
         #find dictionary location in Flock file structure(need to add proper directory search)
         dictLocation = Navi.findTargetFile("Dictionary_output.txt", "../Flock")
-        with open(dictLocation, "r+") as dictionary:
-            for line in dictionary:
-                if stubTemp in line:
-                    replace("")
+        dictLocation = re.sub(r"\\", r"\\\\", dictLocation)
+
+        #Make temp file to store changes in and parse through original dictionary below 
+        fh, absPath = mkstemp()
+        with fdopen(fh,'w') as new_file:
+            with open(dictLocation, "r+") as old_file:
+                for line in old_file:
+                    if stubTemp in line:
+                        oldPath = getPath(stubTemp)
+                        oldPath = re.sub(r"\\", r"\\\\", oldPath)
+                        tempLine = line
+                        tempLine = re.sub(oldPath, newPath, tempLine)
+                        new_file.write(tempLine)
+                    else:
+                        new_file.write(line)
+        #Delete original dictionary and replace it with new dictionary below
+        remove(dictLocation)
+        move(absPath, dictLocation)
+
 
 
 
