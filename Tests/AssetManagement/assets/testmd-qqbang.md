@@ -8,6 +8,6 @@
 
 * ***bold-italic***
 
-[link](assets\markdownTest2-luck.md)
+[link](luck)
 
 > To suck it or not to suck it. That is the question.
