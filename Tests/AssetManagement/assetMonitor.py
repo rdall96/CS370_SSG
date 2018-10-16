@@ -23,7 +23,7 @@ def checkAssetStructure(searchFolder):
     for stub in range(len(stubList)):
         realPath = Navi.findTargetFile(stub, searchFolder)
         if(not(realPath == dictionary.getPath(stub))):
-            dictionary.changePath(stub, realPath)
+            dictionary.changePath(searchFolder, stub, realPath)
 
 def convertStubsToLinks(searchFolder):
     stubList = dictionary.getStubList()

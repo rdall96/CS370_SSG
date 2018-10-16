@@ -122,7 +122,7 @@ def getStub(pathTemp):
     return -1
 
 
-def changePath(stubTemp, newPath):
+def changePath(searchFolder, stubTemp, newPath):
     newPath = re.sub(r"\\", r"\\\\", newPath)
     #if stub is in dict continute
     if stubTemp in fileDict.values():
@@ -131,7 +131,7 @@ def changePath(stubTemp, newPath):
         del fileDict[list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]]
 
         #find dictionary location in Flock file structure(need to add proper directory search)
-        dictLocation = Navi.findTargetFile("Dictionary_output.txt", "../Flock")
+        dictLocation = Navi.findTargetFile("Dictionary_output.txt", searchFolder)
         dictLocation = re.sub(r"\\", r"\\\\", dictLocation)
 
         #Make temp file to store changes in and parse through original dictionary below 
