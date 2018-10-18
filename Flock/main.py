@@ -47,8 +47,12 @@ def selectTheme(destFolder):
         theme = "fun_theme"
     else:
         LOG("The selected theme does not exist")
+    # copy stylesheet
     themePath = "Themes/" + theme + ".css"
     shutil.copy2(themePath, (destFolder + "/styles.css"))
+    # copy Flock icon
+    iconPath = "Themes/flock_icon.png"
+    shutil.copy2(iconPath, (destFolder + "/flock_icon.png"))
     return True
 
 
