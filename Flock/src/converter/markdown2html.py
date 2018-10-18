@@ -50,8 +50,8 @@ def generateHTMLHeader(file, mode):
         file.write(FLOCK_HEADER_CODE)
     elif mode == 'c':
         file.write(FLOCK_FOOTER_CODE)
-    # close the html file, done writing to it
-    file.close()
+        # close the html file, done writing to it
+        file.close()
     return file
 
 def createHTML(fileName):
