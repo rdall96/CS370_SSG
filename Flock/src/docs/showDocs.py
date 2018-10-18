@@ -16,6 +16,10 @@ DEBUG = False
 import sys, os, webbrowser
 
 FIRST_USE_FILE = "firstUse"
+TEXT_TO_WRITE = """The existance of this files tells the program it has been executed before.
+Deleting this file will result in the program performing a first time execution and show the usage documentation.
+You can also show the usage documentation by calling the program with the '-help' argument.
+Thank you for using Flock!"""
 USAGE_DOC = "file://" + os.path.abspath("Flock-HowTo.html")
 
 # Custom functions
@@ -26,10 +30,7 @@ def LOG(string):
 def createFile():
     # creates the first time use file and adds the following contents to it
     f = open(FIRST_USE_FILE, 'w+', 0)
-    f.write("The existance of this files tells the program it has been executed before.\n")
-    f.write("Deleting this file will result in the program performing a first time execution and show the usage documentation.\n")
-    f.write("You can also show the usage documentation by calling the program with the '-help' argument.\n")
-    f.write("Thank you for using Flock!")
+    f.write(TEXT_TO_WRITE)
     f.close()
 
 def openDocs():
