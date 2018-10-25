@@ -8,10 +8,13 @@
 #              translates them to a working HTML website, creating a
 #              separate folder with the correct hierarchy.
 #----------------------------------------------------------------------
-
 DEBUG = False
+def LOG(string):
+    if DEBUG:
+        print(string)
+    return
 
-# Import statements
+# IMPORTS
 import os, shutil, sys
 import src.converter.markdown2html as Converter
 import src.docs.showDocs as UsageDocs
@@ -21,12 +24,7 @@ import src.OScheckLooper as OSutil
 import src.assetMonitor as Asset
 import src.argChecker as ArgCheck
 
-# Other functions
-
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
+# FUNCTIONS
 
 def getFullPath(folder):
     return os.path.abspath(folder + '/')
@@ -69,31 +67,29 @@ def selectTheme(destFolder):
 #----------------------------------------------------------------------
 
 print("\n - Welcome to the Static Site Generator! - \n")
+
+# Show usage docs if first time and check for arguments in command line
 UsageDocs.showDocs(0)
 if ArgCheck.parse(sys.argv) == False:
     DEBUG = True
 
-# Ask user for folder path with markdown files
-# call Lukes OS specific folder finder
+# Get path with markdown files from user
 markdownFolder = OSutil.systemCheck(raw_input("Insert path to markdown documents: "))
 LOG("Source folder:  " + markdownFolder)
 # Adding '/www' to the destination path to make sure it's an non-existing path to save the website
 htmlFolder = OSutil.systemCheck(raw_input("Insert path to the website folder: ")) + "/www"
 LOG("Destination folder:  " + htmlFolder)
 
-# Create htmlFolder directory structure
-    # Copy all files to it
+# Create htmlFolder directory structure and copy files to it
 LOG("\ncopying files")
 Copier.fileCopy(markdownFolder, htmlFolder)
 
 # Call stub dictonary generation on destination folder
-    # OS specific
 LOG("\ngenerating dictonary")
 indexedFiles = Stubber.populateDict(htmlFolder)
 LOG("   Indexed " + (str)(indexedFiles) + " files")
 
-# Check if files are valid
-    # Call Asset Monitor
+# Migrate links
 LOG("\nmigrating links")
 Asset.convertStubsToLinks(htmlFolder)
 
@@ -101,6 +97,7 @@ Asset.convertStubsToLinks(htmlFolder)
 LOG("\nconverting files")
 filesConverted = Converter.convertAllMarkdown(htmlFolder)
 LOG("   Converted " + (str)(filesConverted) + " files")
+
 # Delete markdown files from destinantion
 LOG("\ndeleting original .md files from destination")
 Copier.deleteMD(htmlFolder)
