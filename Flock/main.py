@@ -39,7 +39,7 @@ def renameIndex(folder):
 
 def selectTheme(destFolder):
     print("Available themes: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
-    themeOption = raw_input("Choose a theme: ")
+    themeOption = input("Choose a theme: ")
     if themeOption == '1':
         #light theme selected
         LOG("Light theme choosen")
@@ -75,10 +75,10 @@ if ARG_RETURN == True:
     DEBUG = True
 
 # Get path with markdown files from user
-markdownFolder = OSutil.systemCheck(raw_input("Insert path to markdown documents: "))
+markdownFolder = OSutil.systemCheck(input("Insert path to markdown documents: "))
 LOG("Source folder:  " + markdownFolder)
 # Adding '/www' to the destination path to make sure it's an non-existing path to save the website
-htmlFolder = OSutil.systemCheck(raw_input("Insert path to the website folder: ")) + "/www"
+htmlFolder = OSutil.systemCheck(input("Insert path to the website folder: ")) + "/www"
 LOG("Destination folder:  " + htmlFolder)
 
 # Create htmlFolder directory structure and copy files to it

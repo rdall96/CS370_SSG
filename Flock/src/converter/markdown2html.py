@@ -59,7 +59,7 @@ def createHTML(fileName):
     LOG("Creating HTML file...")
     htmlName = getFileName(fileName) + ".html"
     # Creates html file in the same location as the markdown file
-    html = open(htmlName, "w+", 0)
+    html = open(htmlName, "w+")
     # adds HTML header from html_head file
     html = generateHTMLHeader(html, 'o')
     # return HTML file object
@@ -70,7 +70,7 @@ def parseMarkdown(mFile, htmlFile):
     try:
         # open the textFile and read it
         LOG("--- " + mFile)
-        input_file = open(mFile, "r", 0)
+        input_file = open(mFile, "r")
         # read inputFile as a string
         text = input_file.read()
         # converter returns an HTML string of text
@@ -114,7 +114,7 @@ def checkIfValid(filePath):
     else:
         try:
             # create temporary html file to check if valid upon converison
-            tempHTML = open("testHTML.html", "w+", 0)
+            tempHTML = open("testHTML.html", "w+")
             tempHTML = parseMarkdown(filePath, tempHTML)
             # check if converted html file is empty
             if (os.stat(tempHTML).st_stat < 1):

@@ -29,7 +29,7 @@ def LOG(string):
 
 def createFile():
     # creates the first time use file and adds the following contents to it
-    f = open(FIRST_USE_FILE, 'w+', 0)
+    f = open(FIRST_USE_FILE, 'w+')
     f.write(TEXT_TO_WRITE)
     f.close()
 
