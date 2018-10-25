@@ -70,7 +70,8 @@ print("\n - Welcome to the Static Site Generator! - \n")
 
 # Show usage docs if first time and check for arguments in command line
 UsageDocs.showDocs(0)
-if ArgCheck.parse(sys.argv) == False:
+ARG_RETURN = ArgCheck.parse(sys.argv)
+if ARG_RETURN == True:
     DEBUG = True
 
 # Get path with markdown files from user
