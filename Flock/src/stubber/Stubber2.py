@@ -37,7 +37,7 @@ import re
 global fileDict
 
 # v2.0 - Changed file links to global variable. Easier to move the files in the future
-dictonaryOutFile = "Dictionary_output.txt"
+dictonaryOutFile = "src/stubber/Dictionary_output.txt"
 
 fileDict = {}
 # v2.0 - Removed second dictonary

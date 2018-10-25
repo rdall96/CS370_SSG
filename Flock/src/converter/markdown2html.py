@@ -16,7 +16,18 @@ import os
 import markdown
 import markdown_extensions
 
-HTML_HEADER_FILE = "src/converter/html_head.txt"
+FLOCK_HEADER_CODE = """<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="screen" href="styles.css"/>
+</head></html>
+<body>"""
+FLOCK_FOOTER_CODE = """\n<div class="FlockFooter">
+<p> Created using Flock   
+<img src="flock_icon.png"/>
+</p></div>\n</body>"""
 EXTENSIONS_FILE = "src/converter/markdown_extensions.py"
 EXECUTE_SUCCESSFULLY = False
 
@@ -36,12 +47,9 @@ def generateHTMLHeader(file, mode):
     # mode 'o' (opening statements)
     # mode 'c' (closing statements)
     if mode == 'o':
-        headFile = open(HTML_HEADER_FILE, "r", 0)
-        file.write(headFile.read())
-        # close the header file
-        headFile.close()
+        file.write(FLOCK_HEADER_CODE)
     elif mode == 'c':
-        file.write("\n</body>")
+        file.write(FLOCK_FOOTER_CODE)
         # close the html file, done writing to it
         file.close()
     return file
@@ -51,7 +59,7 @@ def createHTML(fileName):
     LOG("Creating HTML file...")
     htmlName = getFileName(fileName) + ".html"
     # Creates html file in the same location as the markdown file
-    html = open(htmlName, "w+", 0)
+    html = open(htmlName, "w+")
     # adds HTML header from html_head file
     html = generateHTMLHeader(html, 'o')
     # return HTML file object
@@ -62,7 +70,7 @@ def parseMarkdown(mFile, htmlFile):
     try:
         # open the textFile and read it
         LOG("--- " + mFile)
-        input_file = open(mFile, "r", 0)
+        input_file = open(mFile, "r")
         # read inputFile as a string
         text = input_file.read()
         # converter returns an HTML string of text
@@ -106,7 +114,7 @@ def checkIfValid(filePath):
     else:
         try:
             # create temporary html file to check if valid upon converison
-            tempHTML = open("testHTML.html", "w+", 0)
+            tempHTML = open("testHTML.html", "w+")
             tempHTML = parseMarkdown(filePath, tempHTML)
             # check if converted html file is empty
             if (os.stat(tempHTML).st_stat < 1):
