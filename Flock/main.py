@@ -38,24 +38,38 @@ def renameIndex(folder):
     return
 
 def selectTheme(destFolder):
-    print("Available themes: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme")
-    themeOption = input("Choose a theme: ")
-    if themeOption == '1':
-        #light theme selected
-        LOG("Light theme choosen")
-        theme = "light_theme"
-    elif themeOption == '2':
-        #dark theme selected
-        LOG("Dark theme choosen")
-        theme = "dark_theme"
-    elif themeOption == '3':
-        #dark theme selected
-        LOG("Fun theme choosen")
-        theme = "fun_theme"
-    else:
-        LOG("The selected theme does not exist")
+    # check if selected theme is valid, if not keep asking user for a valid theme
+    isThemevalid = False
+    while not isThemevalid:
+        print("Available themes: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme\n 4. Select your own")
+        themeOption = input("Choose a theme: ")
+        if themeOption == '1':
+            #light theme selected
+            LOG("Light theme choosen")
+            theme = "light_theme"
+            themePath = "Themes/" + theme + ".css"
+            isThemevalid = True
+        elif themeOption == '2':
+            #dark theme selected
+            LOG("Dark theme choosen")
+            theme = "dark_theme"
+            themePath = "Themes/" + theme + ".css"
+            isThemevalid = True
+        elif themeOption == '3':
+            #dark theme selected
+            LOG("Fun theme choosen")
+            theme = "fun_theme"
+            themePath = "Themes/" + theme + ".css"
+            isThemevalid = True
+        elif themeOption == "4":
+            #custom user theme selected
+            LOG("Custom user theme selected")
+            themePath = input("Insert the path and name to your custom theme: ")
+            isThemevalid = True
+        else:
+            LOG("The selected theme does not exist")
+            print("\nPlease choose a valid theme")
     # copy stylesheet
-    themePath = "Themes/" + theme + ".css"
     shutil.copy2(themePath, (destFolder + "/styles.css"))
     # copy Flock icon
     iconPath = "Themes/flock_icon.png"
