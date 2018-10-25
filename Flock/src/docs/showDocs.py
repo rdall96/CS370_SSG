@@ -39,9 +39,9 @@ def openDocs():
     #webbrowser.open_new_tab(USAGE_DOC)
     webbrowser.open(USAGE_DOC, new=0, autoraise=True)
 
-def showDocs(argValues):
-    print("Type '-help' when executing the program for usage guide\n")
-
+def showDocs(show):
+    #print("Type '-help' when executing the program for usage guide\n")
+    
     # check if firstUse file exists
     LOG("Checking if first time use file exists: ")
     isFirstUse = os.path.isfile(FIRST_USE_FILE)
@@ -54,14 +54,8 @@ def showDocs(argValues):
     else:
         LOG("File exists\n")
 
-    # check for '-help' argument
-    # argument list has to be greater than 1 to know there could be a valid arguemnt
-    if len(argValues) > 1:
-        # loop through all arguments to catch the possible '-help'
-        for arg in argValues:
-            if arg == "-help":
-                LOG("'-help' called!")
-                # call show website
-                openDocs()
-    else:
-        LOG("No arguments called\n")
+    # check show flag
+    if show == 1:
+        # call show website
+        openDocs()
+    return
