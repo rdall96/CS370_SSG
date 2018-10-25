@@ -19,10 +19,12 @@ import docs.showDocs as UsageDocs
 HELP_FLAG = "-help"
 VERBOSE_FLAG = "-verbose"
 
-RETURN_BOOL = False # flag to return after checking arg flags
-
 def parse(argv):
+    
     # check for command arguments and calls correct setting upon that
+    
+    RETURN_BOOL = False # flag to return after checking arg flags
+
     # if argument count higher than 1 then there are argments
     if len(argv) > 1:
         # loop through all arguments and check their values
