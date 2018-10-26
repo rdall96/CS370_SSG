@@ -15,7 +15,7 @@ def LOG(string):
     return
 
 # IMPORTS
-import os, shutil, sys
+import os, sys
 import src.converter.markdown2html as Converter
 import src.docs.showDocs as UsageDocs
 import src.stubber.Stubber2 as Stubber
@@ -23,6 +23,7 @@ import src.copier.fileCopy as Copier
 import src.OScheckLooper as OSutil
 import src.assetMonitor as Asset
 import src.argChecker as ArgCheck
+import src.themeSelector as Themer
 
 # FUNCTIONS
 
@@ -36,46 +37,6 @@ def renameIndex(folder):
     LOG("   Index file: " + currName)
     os.rename(currName, newName)
     return
-
-def selectTheme(destFolder):
-    # check if selected theme is valid, if not keep asking user for a valid theme
-    isThemevalid = False
-    while not isThemevalid:
-        print("Available themes: \n 1. Light theme\n 2. Dark theme\n 3. Fun theme\n 4. Select your own")
-        themeOption = input("Choose a theme: ")
-        if themeOption == '1':
-            #light theme selected
-            LOG("Light theme choosen")
-            theme = "light_theme"
-            themePath = "Themes/" + theme + ".css"
-            isThemevalid = True
-        elif themeOption == '2':
-            #dark theme selected
-            LOG("Dark theme choosen")
-            theme = "dark_theme"
-            themePath = "Themes/" + theme + ".css"
-            isThemevalid = True
-        elif themeOption == '3':
-            #dark theme selected
-            LOG("Fun theme choosen")
-            theme = "fun_theme"
-            themePath = "Themes/" + theme + ".css"
-            isThemevalid = True
-        elif themeOption == "4":
-            #custom user theme selected
-            LOG("Custom user theme selected")
-            themePath = input("Insert the path and name to your custom theme: ")
-            isThemevalid = True
-        else:
-            LOG("The selected theme does not exist")
-            print("\nPlease choose a valid theme")
-    # copy stylesheet
-    shutil.copy2(themePath, (destFolder + "/styles.css"))
-    # copy Flock icon
-    iconPath = "Themes/flock_icon.png"
-    shutil.copy2(iconPath, (destFolder + "/flock_icon.png"))
-    return True
-
 
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
@@ -123,6 +84,6 @@ renameIndex(htmlFolder)
 
 # Ask user to pick a theme for the website and copy it to destination folder
 LOG("\nselecting theme")
-selectTheme(htmlFolder)
+Themer.selectTheme(htmlFolder, DEBUG)
 
 print("DONE!")
