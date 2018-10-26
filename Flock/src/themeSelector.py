@@ -28,13 +28,9 @@ THEME_NAMES = """
  9. Select your own
 """
 
-def selectTheme(destinationFolder, verbose):
+def selectTheme(destinationFolder):
 
     THEME_VALID = False
-
-    # get verbose mode
-    if verbose:
-        DEBUG = True
     
     # ask user to pick a theme
     # also keeps asking in case the input isn't valid

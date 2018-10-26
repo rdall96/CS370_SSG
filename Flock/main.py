@@ -84,6 +84,6 @@ renameIndex(htmlFolder)
 
 # Ask user to pick a theme for the website and copy it to destination folder
 LOG("\nselecting theme")
-Themer.selectTheme(htmlFolder, DEBUG)
+Themer.selectTheme(htmlFolder)
 
 print("DONE!")
