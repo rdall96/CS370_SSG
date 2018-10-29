@@ -31,7 +31,6 @@ def convertStubsToLinks(searchFolder):
     for root, dirs, files in os.walk(searchFolder):
         for filename in files:
             if(".md" in filename):
-                topDir = searchFolder
                 mdFilePath = os.path.join(root, filename)
 
                 #Below opens Md file to parse lines and creates temp file to store new lines
