@@ -13,6 +13,6 @@ Here's a fun place: [Laugh Challenge](https://www.youtube.com/watch?v=eHl7jMIFDp
 
 Go to [page 1](pg01)
 
->And here's a wonderful emoji: ![poop emoji](emoji)
+>And here's a wonderful emoji: ![computer](emoji) but two is better than one: ![computer](emoji)
 
 Subscripbe to us: ![subscribe](gif)
