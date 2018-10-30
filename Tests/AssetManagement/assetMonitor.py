@@ -44,6 +44,7 @@ def convertStubsToLinks(searchFolder):
                                 print("Found link\n")
                                 tempLine = line
                                 tempLine = re.sub("^.*\[.*\]", "", tempLine)
+                                tempLine = re.sub(").*]", ")", tempLine)
                                 parsedLine = re.split("[()]", tempLine)
                                 tempStub = parsedLine[1]
                                 stubInDict = False
