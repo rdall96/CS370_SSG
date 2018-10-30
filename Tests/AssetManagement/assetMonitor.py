@@ -61,16 +61,14 @@ def convertStubsToLinks(searchFolder):
                                     if(linkPath == -1):
                                         print("Stub, ", tempStub, ", corresponding path not found in dictionary")
                                         print("Substitution will not be carried out, check stubs in files for errors.")
-                                        new_file.write(line)
                                     else:
                                         #Getting path of the link and replacing all "\" with "\\" to prevent \n, \t, etc.
                                         linkPath = re.sub(r"\\", r"\\\\", linkPath)
                                         linkPath = "(" + linkPath + ")"
                                         tempStub = "\(" + tempStub + "\)"
-                                        tempLine = line
-                                        tempLine = re.sub(tempStub, linkPath, tempLine)
-                                        new_file.write(tempLine)
-                                print(tempLine)
+                                        line = re.sub(tempStub, linkPath, line)
+                                #Write line to new Markdown file regardless of if it was changed        
+                                new_file.write(line)
                             else:
                                 new_file.write(line)
                 #Deleting old MD file and moving new file to replace it
