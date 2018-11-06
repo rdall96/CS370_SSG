@@ -11,6 +11,17 @@
 #----------------------------------------------------------------------
 
 DEBUG = False
+def LOG(string):
+    if DEBUG:
+        print(string)
+    return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
+    return
 
 # Import statements
 import sys, os, webbrowser
@@ -23,9 +34,6 @@ Thank you for using Flock!"""
 USAGE_DOC = "file://" + os.path.abspath("docs/Flock-HowTo.html")
 
 # Custom functions
-def LOG(string):
-    if DEBUG:
-        print(string)
 
 def createFile():
     # creates the first time use file and adds the following contents to it

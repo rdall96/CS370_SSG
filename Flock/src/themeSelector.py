@@ -6,10 +6,18 @@
 #
 # Description: Theme picker for Flock.
 #----------------------------------------------------------------------
+
 DEBUG = False
 def LOG(string):
     if DEBUG:
         print(string)
+    return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
     return
 
 import shutil

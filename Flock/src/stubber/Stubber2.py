@@ -25,6 +25,13 @@ def LOG(string):
     if DEBUG:
         print(string)
     return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
+    return
 
 import string
 import collections
@@ -159,5 +166,5 @@ def loadDict(nfile):
     output = open("Dictionary_output.txt", "w")
     output.write(fileDictJson)
     output.close()
-    print(fileDict)
+    LOG(fileDict)
 

@@ -68,7 +68,15 @@ print("\n - Welcome to the Static Site Generator! - \n")
 UsageDocs.showDocs(0)
 ARG_RETURN = ArgCheck.parse(sys.argv)
 if ARG_RETURN == True:
+    # enable DEBUG everywhere
     DEBUG = True
+    Converter.enableDEBUG(DEBUG)
+    UsageDocs.enableDEBUG(DEBUG)
+    Stubber.enableDEBUG(DEBUG)
+    Copier.enableDEBUG(DEBUG)
+    OSutil.enableDEBUG(DEBUG)
+    Asset.enableDEBUG(DEBUG)
+    Themer.enableDEBUG(DEBUG)
 
 # Get path with markdown files from user
 markdownFolder = OSutil.systemCheck(input("Insert path to markdown documents: "))

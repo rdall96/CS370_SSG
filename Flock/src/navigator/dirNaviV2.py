@@ -8,16 +8,24 @@
 #    Langauge: Python                           #
 #################################################
 
+DEBUG = False
+def LOG(string):
+    if DEBUG:
+        print(string)
+    return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
+    return
+
 import os
 from os.path import join, getsize
 from shutil import copyfile
 import shutil
 
-Debug = True
-
-def prints(string):
-    if Debug:
-        print(string)
 
 #Variables: targetDir is the directory to find
 #           topDirectory is the directory you want to search all the children of
@@ -27,9 +35,9 @@ def prints(string):
 def findTargetDir(targetDir, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
         if targetDir in dirs:
-            prints(targetDir + " found")
+            LOG(targetDir + " found")
             path = os.path.join(root, targetDir)
-            prints(" Path is " + path)
+            LOG(" Path is " + path)
             return path
     return -1
 
@@ -47,9 +55,9 @@ def transcriptTargetFile(targetFilePath, newFilePath):
 def findTargetFile(targetFile, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
         if targetFile in files:
-            prints(targetFile + " found")
+            LOG(targetFile + " found")
             path = os.path.join(root, targetFile)
-            prints(" Path is " + path)
+            LOG(" Path is " + path)
             return path
     return -1
 

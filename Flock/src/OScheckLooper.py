@@ -10,6 +10,20 @@
 # on a loop in order to grab the Stub of every file in the fullFolderPath.
 #---------------------------------------------------------------------
 
+DEBUG = False
+def LOG(string):
+    if DEBUG:
+        print(string)
+    return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
+    return
+
+
 import platform
 import os
 import stubber.Stubber2 as Stub
@@ -29,15 +43,15 @@ def findFile(name, path):
                 usrFolder = os.path.join(root, name)
                 return usrFolder
     except TypeError as typeErr:
-        print("Folder  " + usrFolder + "  does not exist under any path:  " + path)
-        #print(typeErr)
-        print("If your directory is stored in an external drive, please move it under your OS drive")
+        LOG("Folder  " + usrFolder + "  does not exist under any path:  " + path)
+        LOG(typeErr)
+        LOG("If your directory is stored in an external drive, please move it under your OS drive")
     except ValueError as valErr:
-        print("Folder  " + usrFolder + "  does not exist under any path:  " + path)
-        #print(valErr)
-        print("If your directory is stored in an external drive, please move it under your OS drive")
+        LOG("Folder  " + usrFolder + "  does not exist under any path:  " + path)
+        LOG(valErr)
+        LOG("If your directory is stored in an external drive, please move it under your OS drive")
     except:
-        print("Unexpected error!")
+        LOG("Unexpected error!")
     return
 
 
@@ -59,5 +73,5 @@ def systemCheck(usrDirInput):
     # added else check for not supported OSes
     # Ricky Dall'Armellina - 09/28/2018
     else:
-        print("OS not supported")
+        print("\nOS not supported\n")
     return fullFolderPath

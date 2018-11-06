@@ -10,7 +10,19 @@
 #              HTML file in the same location.
 #              Returns true when successful and false when not.
 #----------------------------------------------------------------------
+
 DEBUG = False
+def LOG(string):
+    if DEBUG:
+        print(string)
+    return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
+    return
 
 import os
 import markdown
@@ -31,9 +43,6 @@ FLOCK_FOOTER_CODE = """\n<div class="FlockFooter">
 EXTENSIONS_FILE = "src/converter/markdown_extensions.py"
 EXECUTE_SUCCESSFULLY = False
 
-def LOG(string):
-    if DEBUG:
-        print(string)
 
 def getFileName(fileName):
     # get a substring with just the file name, no extension

@@ -8,12 +8,20 @@
 #---------------------------------------------------------------------
 
 DEBUG = False
+def LOG(string):
+    if DEBUG:
+        print(string)
+    return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
+    return
 
 import os, shutil
 
-def LOG(string):
-    if DEBUG:
-        LOG(string)
 
 def fileCopy(srcDir, destDir):
     for root, dirs, files in os.walk(srcDir):

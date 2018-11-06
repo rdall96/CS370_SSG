@@ -8,6 +8,18 @@
 #    Langauge: Python                           #
 #################################################
 
+DEBUG = False
+def LOG(string):
+    if DEBUG:
+        print(string)
+    return
+def enableDEBUG(isEnable):
+    global DEBUG
+    if isEnable:
+        DEBUG = True
+    else:
+        DEBUG = False
+    return
 
 from tempfile import mkstemp
 from shutil import move
@@ -41,7 +53,7 @@ def convertStubsToLinks(searchFolder):
 
                             #If statement below checks if the link syntax is in a line
                             if(re.search("\[.*\]\(.*\)", line, flags = 0)):
-                                #print("Found link\n")
+                                LOG("Found link\n")
                                 tempLine = line
                                 tempLine = re.sub("^.*\[.*\]", "", tempLine)
                                 parsedLine = re.split("[()]", tempLine)
@@ -53,14 +65,14 @@ def convertStubsToLinks(searchFolder):
                                             stubInDict = True
                                             tempStub = subString
                                     if(stubInDict == False):
-                                        #print("Stub, ", tempStub, ", not in dictionary")
+                                        LOG("Stub, " + tempStub + ", not in dictionary")
 
                                     #Code block below extracts stub, gets the corresponding path from the dictionary
                                     #and replaces the stub in the line with the path from the dictionary
                                     linkPath = dictionary.getPath(tempStub)
                                     if(linkPath == -1):
-                                        #print("Stub, ", tempStub, ", corresponding path not found in dictionary")
-                                        #print("Substitution will not be carried out, check stubs in files for errors.")
+                                        LOG("Stub, " + tempStub + ", corresponding path not found in dictionary")
+                                        LOG("Substitution will not be carried out, check stubs in files for errors.")
                                     else:
                                         #Getting path of the link and replacing all "\" with "\\" to prevent \n, \t, etc.
                                         linkPath = re.sub(r"\\", r"\\\\", linkPath)
