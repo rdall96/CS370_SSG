@@ -1,0 +1,13 @@
+/* CS 350 Homework #5
+ * Riccardo Dall'Armellina
+*/
+
+-- PROBLEM 6.23 p.191
+-- a
+    SELECT `CAR.Serial_no`, `CAR.Manufacturer`, `SALE.Sales_price` FROM `SALE`, `CAR`, `SALESPERSON` WHERE (`SALESPERSON.Name` = 'Jane Doe' AND `SALE.Salesperson_id` = `SALESPERSON.Salesperson_id` AND `SALE.Serial_no` = `CAR.Serial_no`);
+-- b
+    SELECT `Serial_no`, `Model` FROM `CAR` WHERE `Serial_no` NOT IN (SELECT * FROM `OPTION`);
+-- C
+--  The entries in the 'SALESPERSON' table would be displayed no matter if they had a related entry in the 'SALE' table or not. For example, if a sales person does not have an entry in the 'SALE' table, they will still appear in results for the query. However, they will appear with NULL data in the columns of the 'SALE' table.
+-- d
+    SELECT `Salesperson_id` FROM `SALE` UNION ALL SELECT `Salesperson_id` FROM `SALESPERSON`;

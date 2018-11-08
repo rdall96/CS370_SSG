@@ -1,0 +1,23 @@
+CS 350 Homework #6
+Riccardo Dall'Armellina
+
+
+- PROBLEM 7.19 p.235
+
+    1. The database represents each airport, keeping track of every unique airport code, airport name, the city and the state in which the it is located.
+
+    2. Each flight has a unique number, an airline for that flight, and the days for when it is scheduled.
+    
+    3. Every flight is made up of one or more flight "LEGs".
+       Each flight "LEG" has a departure airport with its scheduled departure time and, an arrival airport with its own scheduled arrival time.
+    
+    4. Each flight "LEG INSTANCE" is an instance of a flight "LEG" on a specific date.
+       The actual departure and arrival times for each airport are recorded together with the information of each flight leg after it arrives.
+       The database also keeps track of the number of available seats and the aircraft used in each "LEG INSTANCE".
+    
+    5. The customer reservations for each instance include the customer name, their phone number and their seat number on the plane for each reservation they have stored.
+    
+    6. The database also keeps track of info about the airplanes, such as the airplane type and model.
+       For each airplane type, there's a record for type name, manufacturing company, and max number of seats on the aircraft.
+       There also a record list for the airports in which each plane of a specific type can land.
+       Every airplane has an airplane ID, the total number of seats and type in the database.

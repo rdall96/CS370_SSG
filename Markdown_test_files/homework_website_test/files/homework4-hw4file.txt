@@ -1,0 +1,21 @@
+/* CS 350 Homework #4
+ * Riccardo Dall'Armellina
+*/
+
+-- PROBLEM 5.6 p.141
+-- a
+    SELECT `Name`, `Major` FROM `STUDENT` WHERE ((`STUDENT.Student_number` = `GRADE_REPORT.Student_number`) AND (`GRADE_REPORT.Grade` = 'A'));
+-- b
+    SELECT `Name`, `Major` FROM `STUDENT` WHERE ((`STUDENT.Student_number` = `GRADE_REPORT.Student_number`) AND (`GRADE_REPORT.Grade` != 'A'));
+
+-- PROBLEM 5.7 p.141
+-- a
+    SELECT `Fname`, `Lname`, `Salary`, `Dname` FROM `EMPLOYEE`, `DEPARTMENT` WHERE (`Dno` = `Dnumber`), MAX(Salary);
+-- b
+    SELECT `Fname`, `Lname` FROM `EMPLOYEE` WHERE `Super_ssn` IN (
+        SELECT `Super_ssn` FROM `EMPLOYEE` WHERE `Super_ssn` = '888665555'
+    );
+-- c
+    SELECT `Fname`, `Lname` FROM `EMPLOYEE` WHERE `Salary` >= (
+        '10000' + (SELECT MIN(`Salary`) FROM `EMPLOYEE`)
+    );
