@@ -36,10 +36,11 @@ FLOCK_HEADER_CODE = """<!DOCTYPE html>
 <link rel="stylesheet" type="text/css" media="screen" href="styles.css"/>
 </head></html>
 <body>"""
-FLOCK_FOOTER_CODE = """\n<div class="FlockFooter">
+FLOCK_FOOTER_CODE = """\n<a href="https://github.com/rdall96/Flock_SSG" target="blank" style="text-decoration:none;color:inherit;">
+<div class="FlockFooter">
 <p> Created using Flock   
 <img src="flock_icon.png"/>
-</p></div>\n</body>"""
+</p></div></a>\n</body>"""
 EXTENSIONS_FILE = "src/converter/markdown_extensions.py"
 EXECUTE_SUCCESSFULLY = False
 
