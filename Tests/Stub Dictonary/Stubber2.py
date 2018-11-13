@@ -31,6 +31,7 @@ import collections
 import json
 import os
 import ast
+import re
 # v2.0 - Removed imports and calls to os.chmod()
 
 global fileDict
@@ -77,6 +78,9 @@ def populateDict(folder):
     filesStubbed = 0
     for root, dirs, files in os.walk(folder):
         for fileName in files:
+            #Go to next file in loop if it is a hidden file
+            if(re.search("^\.", fileName, flags = 0)):
+                continue
             # v2.0 - Renamed function call according to changes
             addToDict(os.path.join(root, fileName))
             filesStubbed += 1
