@@ -8,19 +8,7 @@
 #    Langauge: Python                           #
 #################################################
 
-DEBUG = False
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
-def enableDEBUG(isEnable):
-    global DEBUG
-    if isEnable:
-        DEBUG = True
-    else:
-        DEBUG = False
-    return
-
+from .. import settings
 import os
 from os.path import join, getsize
 from shutil import copyfile
@@ -35,9 +23,9 @@ import shutil
 def findTargetDir(targetDir, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
         if targetDir in dirs:
-            LOG(targetDir + " found")
+            settings.LOG(targetDir + " found")
             path = os.path.join(root, targetDir)
-            LOG(" Path is " + path)
+            settings.LOG(" Path is " + path)
             return path
     return -1
 
@@ -55,9 +43,9 @@ def transcriptTargetFile(targetFilePath, newFilePath):
 def findTargetFile(targetFile, topDirectory):
     for root, dirs, files in os.walk(topDirectory):
         if targetFile in files:
-            LOG(targetFile + " found")
+            settings.LOG(targetFile + " found")
             path = os.path.join(root, targetFile)
-            LOG(" Path is " + path)
+            settings.LOG(" Path is " + path)
             return path
     return -1
 

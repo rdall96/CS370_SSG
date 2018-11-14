@@ -7,12 +7,8 @@
 # Description: Checks for argument flags when flock is called
 #              from command line and calls respective component
 #----------------------------------------------------------------------
-DEBUG = True
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
 
+from . import settings
 import docs.showDocs as UsageDocs
 
 # Argument flags
@@ -30,11 +26,11 @@ def parse(argv):
         # loop through all arguments and check their values
         for arg in argv:
             if arg == HELP_FLAG:
-                LOG("-help called")
+                settings.LOG("-help called")
                 UsageDocs.showDocs(1)
             elif arg == VERBOSE_FLAG:
-                LOG("-verbose called")
+                settings.LOG("-verbose called")
                 RETURN_BOOL = True
             else:
-                LOG("Argument [ " + arg + " ] invalid!")
+                settings.LOG("Argument [ " + arg + " ] invalid!")
     return RETURN_BOOL

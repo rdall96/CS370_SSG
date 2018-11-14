@@ -19,20 +19,7 @@
 # NOTE: paths are 'keys' in the dictonary, while stubs are 'values'
 #------------------------------------------------------------------
 
-# v2.0 - Added LOG() fucntion for debugging purposes
-DEBUG = False
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
-def enableDEBUG(isEnable):
-    global DEBUG
-    if isEnable:
-        DEBUG = True
-    else:
-        DEBUG = False
-    return
-
+from .. import settings
 import string
 import collections
 import json
@@ -59,7 +46,7 @@ def addToDict(pathTemp):
     #if the file path is not found in the dictionary continue
     if pathTemp not in fileDict.keys():
         # v2.0 - Removed check if file exists. FIle is valid since it's fed by populateDict() which parses through files only
-        LOG("Adding new file to dictonary  -  " + pathTemp)
+        settings.LOG("Adding new file to dictonary  -  " + pathTemp)
         # v2.0 - Removed check if file is md, all files go in a single dictonar
         #get stub from pathTemp
         pathTempRevrs = pathTemp[::-1]
@@ -78,7 +65,7 @@ def addToDict(pathTemp):
         return True
     # v2.0 - Removed second dictonary check
     else:
-        LOG("File already in dictionary")
+        settings.LOG("File already in dictionary")
         return False
     return
 
@@ -88,46 +75,49 @@ def populateDict(folder):
     filesStubbed = 0
     for root, dirs, files in os.walk(folder):
         for fileName in files:
+            #Go to next file in loop if it is a hidden file
+            if(re.search("^\.", fileName, flags = 0)):
+                continue
             # v2.0 - Renamed function call according to changes
             filePath = os.path.join(root, fileName)
             # remove top fiolder from file path for correct linking
             filePath = re.sub((folder + "/"), "", filePath)
             addToDict(filePath)
             filesStubbed += 1
-    LOG("\nStubbed " + (str)(filesStubbed) + " files\n")
+    settings.LOG("\nStubbed " + (str)(filesStubbed) + " files\n")
     # v2.0 - Returning number of files stubbed. Maybe useful to print back to the user?
     return filesStubbed
 
 
 def getPath(stubTemp):
-    # v2.0 - Added LOG() throught the function to test outputs
+    # v2.0 - Added settings.LOG() throught the function to test outputs
     pathTemp = ""
     #if stub is in dictonary continue
     if stubTemp in fileDict.values():
-        LOG("Selected stub is in dictonary")
+        settings.LOG("Selected stub is in dictonary")
         #pathTemp is the file path associcated with the stub
         pathTemp = list(fileDict.keys())[list(fileDict.values()).index(stubTemp)]
-        LOG("   Path: " + pathTemp)
+        settings.LOG("   Path: " + pathTemp)
         return pathTemp
     # v2.0 - Removed getPath() from second dictonary
     else:
-        LOG("Stub '" + stubTemp + "' NOT in dictionary.")
+        settings.LOG("Stub '" + stubTemp + "' NOT in dictionary.")
     return -1
 
 
 def getStub(pathTemp):
-    # v2.0 - Added LOG() throught the function to test outputs
+    # v2.0 - Added settings.LOG() throught the function to test outputs
     stubTemp = ""
     #if pathTemp is in dictionary continue
     if pathTemp in fileDict.keys():
-        LOG("Selected path is in dictonary")
+        settings.LOG("Selected path is in dictonary")
         #stubTemp is the stub associcated with the path
         stubTemp = fileDict[pathTemp]
-        LOG("   Stub: " + stubTemp)
+        settings.LOG("   Stub: " + stubTemp)
         return stubTemp
     # v2.0 - Removed getStub() from second dictionary
     else:
-        LOG("Path '" + pathTemp + "' NOT in dictionary.")
+        settings.LOG("Path '" + pathTemp + "' NOT in dictionary.")
     return -1
 
 
@@ -152,7 +142,7 @@ def changePath(stubTemp, pathTemp):
 
 
 def getStubList():
-    LOG("\n" + (str)(stubList) + "\n")
+    settings.LOG("\n" + (str)(stubList) + "\n")
     return stubList
 
 def loadDict(nfile):
@@ -166,5 +156,5 @@ def loadDict(nfile):
     output = open("Dictionary_output.txt", "w")
     output.write(fileDictJson)
     output.close()
-    LOG(fileDict)
+    settings.LOG(fileDict)
 

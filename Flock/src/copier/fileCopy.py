@@ -7,19 +7,7 @@
 # to a destination directory. Calls checkMD before copying.
 #---------------------------------------------------------------------
 
-DEBUG = False
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
-def enableDEBUG(isEnable):
-    global DEBUG
-    if isEnable:
-        DEBUG = True
-    else:
-        DEBUG = False
-    return
-
+from .. import settings
 import os, shutil
 
 
@@ -28,7 +16,7 @@ def fileCopy(srcDir, destDir):
         for file in files:
             fullFilePath = os.path.join(root , file)
             if os.path.isfile(fullFilePath):
-                LOG(fullFilePath + "  1")
+                settings.LOG(fullFilePath + "  1")
                 path = os.path.dirname(fullFilePath)
                 path = path.replace("Markdown" , '')
     shutil.copytree(srcDir, destDir)
@@ -38,13 +26,13 @@ def fileCopy(srcDir, destDir):
 # 10/02/2018
 # Adding delete .md files from selcted folder
 def deleteMD(folder):
-    LOG("Selected directory: " + folder)
+    settings.LOG("Selected directory: " + folder)
     # loop through files and directories and remove markdown files from it
     for root, dirs, files in os.walk(folder):
         for fileName in files:
             if fileName.endswith(".md"):
                 try:
-                    LOG("Removing markdown file directory")
+                    settings.LOG("Removing markdown file directory")
                     os.remove(os.path.join(root, fileName))
                 except:
                     print("An error occured while removing markdown files")

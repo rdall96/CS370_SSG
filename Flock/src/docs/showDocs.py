@@ -10,20 +10,8 @@
 #              it's the first program execution to show the usuage docs
 #----------------------------------------------------------------------
 
-DEBUG = False
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
-def enableDEBUG(isEnable):
-    global DEBUG
-    if isEnable:
-        DEBUG = True
-    else:
-        DEBUG = False
-    return
-
 # Import statements
+from .. import settings
 import sys, os, webbrowser
 
 FIRST_USE_FILE = os.path.abspath("docs/firstUse")
@@ -43,7 +31,7 @@ def createFile():
 
 def openDocs():
     # open usuage documentation with default browser
-    LOG("Opening usage documentation with the default web-browser\n")
+    settings.LOG("Opening usage documentation with the default web-browser\n")
     #webbrowser.open_new_tab(USAGE_DOC)
     webbrowser.open(USAGE_DOC, new=0, autoraise=True)
 
@@ -51,16 +39,16 @@ def showDocs(show):
     #print("Type '-help' when executing the program for usage guide\n")
     
     # check if firstUse file exists
-    LOG("Checking if first time use file exists: ")
+    settings.LOG("Checking if first time use file exists: ")
     isFirstUse = os.path.isfile(FIRST_USE_FILE)
     if not isFirstUse:
         # if not create it
-        LOG("File does not exist, creating it...\n")
+        settings.LOG("File does not exist, creating it...\n")
         createFile()
         # open the documentation
         openDocs()
     else:
-        LOG("File exists\n")
+        settings.LOG("File exists\n")
 
     # check show flag
     if show == 1:

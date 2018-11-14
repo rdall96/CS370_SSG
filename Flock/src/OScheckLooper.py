@@ -10,20 +10,7 @@
 # on a loop in order to grab the Stub of every file in the fullFolderPath.
 #---------------------------------------------------------------------
 
-DEBUG = False
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
-def enableDEBUG(isEnable):
-    global DEBUG
-    if isEnable:
-        DEBUG = True
-    else:
-        DEBUG = False
-    return
-
-
+from . import settings
 import platform
 import os
 import stubber.Stubber2 as Stub
@@ -43,15 +30,15 @@ def findFile(name, path):
                 usrFolder = os.path.join(root, name)
                 return usrFolder
     except TypeError as typeErr:
-        LOG("Folder  " + usrFolder + "  does not exist under any path:  " + path)
-        LOG(typeErr)
-        LOG("If your directory is stored in an external drive, please move it under your OS drive")
+        settings.LOG("Folder  " + usrFolder + "  does not exist under any path:  " + path)
+        settings.LOG(typeErr)
+        settings.LOG("If your directory is stored in an external drive, please move it under your OS drive")
     except ValueError as valErr:
-        LOG("Folder  " + usrFolder + "  does not exist under any path:  " + path)
-        LOG(valErr)
-        LOG("If your directory is stored in an external drive, please move it under your OS drive")
+        settings.LOG("Folder  " + usrFolder + "  does not exist under any path:  " + path)
+        settings.LOG(valErr)
+        settings.LOG("If your directory is stored in an external drive, please move it under your OS drive")
     except:
-        LOG("Unexpected error!")
+        settings.LOG("Unexpected error!")
     return
 
 

@@ -11,19 +11,7 @@
 #              Returns true when successful and false when not.
 #----------------------------------------------------------------------
 
-DEBUG = False
-def LOG(string):
-    if DEBUG:
-        print(string)
-    return
-def enableDEBUG(isEnable):
-    global DEBUG
-    if isEnable:
-        DEBUG = True
-    else:
-        DEBUG = False
-    return
-
+from .. import settings
 import os
 import markdown
 import markdown_extensions
@@ -48,7 +36,7 @@ EXECUTE_SUCCESSFULLY = False
 def getFileName(fileName):
     # get a substring with just the file name, no extension
     name = fileName[:-3] # extension = '.md' 3 chars
-    LOG("File name: " + name)
+    settings.LOG("File name: " + name)
     return name
 
 def generateHTMLHeader(file, mode):
@@ -66,7 +54,7 @@ def generateHTMLHeader(file, mode):
 
 def createHTML(fileName):
     # get name from getFileName() and create html file with that name
-    LOG("Creating HTML file...")
+    settings.LOG("Creating HTML file...")
     htmlName = getFileName(fileName) + ".html"
     # Creates html file in the same location as the markdown file
     html = open(htmlName, "w+")
@@ -79,7 +67,7 @@ def parseMarkdown(mFile, htmlFile):
     # try catch in case the file can't open, can't be read or can't be converted
     try:
         # open the textFile and read it
-        LOG("--- " + mFile)
+        settings.LOG("--- " + mFile)
         input_file = open(mFile, "r")
         # read inputFile as a string
         text = input_file.read()
@@ -90,21 +78,21 @@ def parseMarkdown(mFile, htmlFile):
         htmlFile.write(html)
         EXECUTE_SUCCESSFULLY = True
     except OSError as err:
-        LOG("Cannot open the target file: " + mFile)
-        LOG("Perhaps the path to the file is incorrect?")
+        settings.LOG("Cannot open the target file: " + mFile)
+        settings.LOG("Perhaps the path to the file is incorrect?")
         EXECUTE_SUCCESSFULLY = False
-        LOG(err)
+        settings.LOG(err)
     except ValueError:
-        LOG("Couldn't read the contents of the file")
+        settings.LOG("Couldn't read the contents of the file")
         EXECUTE_SUCCESSFULLY = False
     except:
-        LOG("Unexpected error, could not convert the file")
+        settings.LOG("Unexpected error, could not convert the file")
         EXECUTE_SUCCESSFULLY = False
     return htmlFile
 
 def markdown2html(inputFile):
     # inputFile is the full path to the file to convert
-    LOG("- Markdown to HTML Python Translator -\n")
+    settings.LOG("- Markdown to HTML Python Translator -\n")
     # create html file
     htmlFile = createHTML(inputFile)
     # parse and analyze the markdown file and obtain the html file
@@ -119,7 +107,7 @@ def checkIfValid(filePath):
     # returns true when file is valid, false when file is not
     fileExtension = filePath[:3]
     if fileExtension != ".md":
-        LOG("Selected file does not have a markdown (.md) extension")
+        settings.LOG("Selected file does not have a markdown (.md) extension")
         return False
     else:
         try:
@@ -129,7 +117,7 @@ def checkIfValid(filePath):
             # check if converted html file is empty
             if (os.stat(tempHTML).st_stat < 1):
                 #if it's empty, then it wasn't a valid beginning file, because no content
-                LOG("Selected file is not a valid Markdown file")
+                settings.LOG("Selected file is not a valid Markdown file")
                 return False
             else:
                 #file is not empty, so assuming it's valid html
@@ -152,5 +140,5 @@ def convertAllMarkdown(folder):
                 markdown2html(filePath)
                 # add one to converted files counter
                 filesConverted += 1
-    LOG(("Converted " + (str)(filesConverted) + " files"))
+    settings.LOG(("Converted " + (str)(filesConverted) + " files"))
     return filesConverted
