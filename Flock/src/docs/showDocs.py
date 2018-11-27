@@ -14,7 +14,15 @@
 from .. import settings
 import sys, os, webbrowser
 
-FIRST_USE_FILE = os.path.abspath("docs/firstUse")
+if settings.IS_MODULE:
+    FIRST_USE_FILE = os.path.abspath("docs/firstUse")
+    settings.LOG("First use file path is: " + FIRST_USE_FILE)
+else:
+    # flock module name 'Flock'
+    # path of Flock module
+    FIRST_USE_FILE = os.path.abspath(Flock.firstUse)
+    settings.LOG("First use file path is: " + FIRST_USE_FILE)
+
 TEXT_TO_WRITE = """The existance of this files tells the program it has been executed before.
 Deleting this file will result in the program performing a first time execution and show the usage documentation.
 You can also show the usage documentation by calling the program with the '-help' argument.

@@ -14,6 +14,7 @@ import docs.showDocs as UsageDocs
 # Argument flags
 HELP_FLAG = "-help"
 VERBOSE_FLAG = "-verbose"
+IS_LOCAL_FLAG = '-local'
 
 def parse(argv):
     
@@ -31,6 +32,9 @@ def parse(argv):
             elif arg == VERBOSE_FLAG:
                 settings.LOG("-verbose called")
                 RETURN_BOOL = True
+            elif arg == IS_LOCAL_FLAG:
+                settings.LOG("-local called")
+                settings.runAsLocal(True)
             else:
                 settings.LOG("Argument [ " + arg + " ] invalid!")
     return RETURN_BOOL
