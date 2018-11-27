@@ -7,17 +7,22 @@
 # Description: Settings file for Flock
 #----------------------------------------------------------------------
 
+import os
+
 DEBUG = False
-LOG_FILE = "log/"
-IS_MODULE = True # toggle to execute FLock locally or installed as a module, useful for testing FRIST_USE_FILE path
+# create log directory
+# os.mkdir(os.path.expanduser("~/Desktop/flock_log/"))
+# LOG_FILE = os.path.expanduser("~/Desktop/") + "flock_log/"
+LOG_FILE = ""
+IS_MODULE = True # toggle to execute Flock locally or installed as a module, useful for testing FRIST_USE_FILE path
 
 def LOG(string):
 
     global DEBUG
 
-    f = open(LOG_FILE, "a+")
-    f.write("\n" + string)
-    f.close()
+    # f = open(LOG_FILE, "a+")
+    # f.write("\n" + string)
+    # f.close()
 
     if DEBUG:
         print(string)
