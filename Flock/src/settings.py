@@ -15,6 +15,7 @@ PREFS_FOLDER = os.path.expanduser("~/.flock_preferences/")
 # create log directory
 LOG_FILE = PREFS_FOLDER + "log/"
 FIRST_USE_FILE = PREFS_FOLDER + "firstUse"
+DICTIONARY_FILE = PREFS_FOLDER + "flock_dictionary.txt"
 
 def LOG(string):
 
