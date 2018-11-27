@@ -14,7 +14,7 @@
 from .. import settings
 import sys, os, webbrowser
 
-if settings.IS_MODULE:
+if not settings.IS_MODULE:
     FIRST_USE_FILE = os.path.abspath("docs/firstUse")
     settings.LOG("First use file path is: " + FIRST_USE_FILE)
 else:
