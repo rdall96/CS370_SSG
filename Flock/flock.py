@@ -56,7 +56,10 @@ def renameIndex(folder):
     newName = folder + "/index.html"
     currName = (folder + "/" + Stubber.getPath("index")) # get path to file with stub index
     settings.LOG("   Index file: " + currName)
-    os.rename(currName, newName)
+    # 11-27-2018 | os.rename() is deprecated since it does not work on Windows.
+    # now using shutil.move() as a rename function
+    shutil.move(currName, newName)
+    # os.rename(currName, newName)
     return
 
 #----------------------------------------------------------------------
