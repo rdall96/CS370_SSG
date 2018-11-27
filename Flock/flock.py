@@ -23,7 +23,8 @@ import src.argChecker as ArgCheck
 import src.themeSelector as Themer
 
 # define log file name
-settings.LOG_FILE += "flock_log-" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + ".txt"
+settings.LOG_FILE += "flock_log-" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S') + ".txt"
+settings.createPreferencesFolder()
 
 # FUNCTIONS
 

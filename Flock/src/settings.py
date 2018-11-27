@@ -10,34 +10,31 @@
 import os
 
 DEBUG = False
+# preferences directory path
+PREFS_FOLDER = os.path.expanduser("~/.flock_preferences/")
 # create log directory
-# os.mkdir(os.path.expanduser("~/Desktop/flock_log/"))
-# LOG_FILE = os.path.expanduser("~/Desktop/") + "flock_log/"
-LOG_FILE = ""
-IS_MODULE = True # toggle to execute Flock locally or installed as a module, useful for testing FRIST_USE_FILE path
+LOG_FILE = PREFS_FOLDER + "log/"
+FIRST_USE_FILE = PREFS_FOLDER + "firstUse"
 
 def LOG(string):
 
     global DEBUG
 
-    # f = open(LOG_FILE, "a+")
-    # f.write("\n" + string)
-    # f.close()
+    f = open(LOG_FILE, "a+")
+    f.write("\n" + string)
+    f.close()
 
     if DEBUG:
         print(string)
     
     return
 
-def runAsLocal(isLocal):
-
-    global IS_MODULE
-
-    if isLocal:
-        IS_MODULE = False
-        LOG("Flock is executing locally.")
-    else:
-        IS_MODULE = True
-        LOG("Flock is executing as an installed module.")
+def createPreferencesFolder():
+    
+    global PREFS_FOLDER
+    
+    if not os.path.isdir(PREFS_FOLDER):
+        os.mkdir(PREFS_FOLDER)
+        os.mkdir(PREFS_FOLDER + "log/")
     
     return

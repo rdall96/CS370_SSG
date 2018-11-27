@@ -14,15 +14,6 @@
 from .. import settings
 import sys, os, webbrowser
 
-if not settings.IS_MODULE:
-    FIRST_USE_FILE = os.path.abspath("docs/firstUse")
-    settings.LOG("First use file path is: " + FIRST_USE_FILE)
-else:
-    # flock module name 'Flock'
-    # path of Flock module
-    FIRST_USE_FILE = os.path.abspath(Flock.firstUse)
-    settings.LOG("First use file path is: " + FIRST_USE_FILE)
-
 TEXT_TO_WRITE = """The existance of this files tells the program it has been executed before.
 Deleting this file will result in the program performing a first time execution and show the usage documentation.
 You can also show the usage documentation by calling the program with the '-help' argument.
@@ -33,7 +24,7 @@ USAGE_DOC = "file://" + os.path.abspath("docs/Flock-HowTo.html")
 
 def createFile():
     # creates the first time use file and adds the following contents to it
-    f = open(FIRST_USE_FILE, 'w+')
+    f = open(settings.FIRST_USE_FILE, 'w+')
     f.write(TEXT_TO_WRITE)
     f.close()
 
@@ -48,7 +39,7 @@ def showDocs(show):
     
     # check if firstUse file exists
     settings.LOG("Checking if first time use file exists: ")
-    isFirstUse = os.path.isfile(FIRST_USE_FILE)
+    isFirstUse = os.path.isfile(settings.FIRST_USE_FILE)
     if not isFirstUse:
         # if not create it
         settings.LOG("File does not exist, creating it...\n")
