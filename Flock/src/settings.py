@@ -14,7 +14,7 @@ DEBUG = False
 PREFS_FOLDER = os.path.expanduser("~/.flock_preferences/")
 # create log directory
 LOG_FILE = PREFS_FOLDER + "log/"
-FIRST_USE_FILE = PREFS_FOLDER + "firstUse"
+FIRST_USE_FILE = PREFS_FOLDER + "docs/firstUse"
 DICTIONARY_FILE = PREFS_FOLDER + "flock_dictionary.txt"
 THEMES_FOLDER = os.path.abspath(Flock.Themes)
 

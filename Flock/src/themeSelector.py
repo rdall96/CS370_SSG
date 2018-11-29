@@ -10,8 +10,8 @@
 from . import settings
 import shutil, os
 
-FLOCK_ICON_PATH = os.path.abspath("~") + "/.flock_preferences/Themes/flock_icon.png"
-THEME_FOLDER = os.path.abspath("~") + "/.flock_preferences/Themes/"
+FLOCK_ICON_PATH = os.path.expanduser("~") + "/.flock_preferences/Themes/flock_icon.png"
+THEME_FOLDER = os.path.expanduser("~") + "/.flock_preferences/Themes/"
 THEME_NAMES = """
  1. Light theme
  2. Dark theme
