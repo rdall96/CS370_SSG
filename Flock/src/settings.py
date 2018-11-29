@@ -16,6 +16,7 @@ PREFS_FOLDER = os.path.expanduser("~/.flock_preferences/")
 LOG_FILE = PREFS_FOLDER + "log/"
 FIRST_USE_FILE = PREFS_FOLDER + "firstUse"
 DICTIONARY_FILE = PREFS_FOLDER + "flock_dictionary.txt"
+THEMES_FOLDER = os.path.abspath(Flock.Themes)
 
 def LOG(string):
 

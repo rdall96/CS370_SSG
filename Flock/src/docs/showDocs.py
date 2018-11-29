@@ -18,7 +18,7 @@ TEXT_TO_WRITE = """The existance of this files tells the program it has been exe
 Deleting this file will result in the program performing a first time execution and show the usage documentation.
 You can also show the usage documentation by calling the program with the '-help' argument.
 Thank you for using Flock!"""
-USAGE_DOC = "file://" + os.path.abspath("docs/Flock-HowTo.html")
+USAGE_DOC = os.path.abspath("~") + "/.flock_preferences/docs/Flock-HowTo.html"
 
 # Custom functions
 

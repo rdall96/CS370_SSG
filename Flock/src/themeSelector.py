@@ -2,16 +2,16 @@
 #----------------------------------------------------------------------
 # Theme Selector
 # Author: Ricky Dall'Armellina
-# Date: 10/226/2018
+# Date: 10/26/2018
 #
 # Description: Theme picker for Flock.
 #----------------------------------------------------------------------
 
 from . import settings
-import shutil
+import shutil, os
 
-FLOCK_ICON_PATH = "Themes/flock_icon.png"
-THEME_FOLDER = "Themes/"
+FLOCK_ICON_PATH = os.path.abspath("~") + "/.flock_preferences/Themes/flock_icon.png"
+THEME_FOLDER = os.path.abspath("~") + "/.flock_preferences/Themes/"
 THEME_NAMES = """
  1. Light theme
  2. Dark theme
