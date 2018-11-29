@@ -12,7 +12,7 @@
 # IMPORTS
 from src import settings
 import datetime, time
-import os, shutil, sys
+import os, shutil, sys, webbrowser
 import src.converter.markdown2html as Converter
 import src.docs.showDocs as UsageDocs
 import src.stubber.Stubber2 as Stubber
@@ -21,6 +21,7 @@ import src.OScheckLooper as OSutil
 import src.assetMonitor as Asset
 import src.argChecker as ArgCheck
 import src.themeSelector as Themer
+
 
 # define log file name
 settings.LOG_FILE += "flock_log-" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S') + ".txt"
@@ -34,7 +35,7 @@ def getFullPath(folder):
 def checkExistingDestination(destinationFolder):
     # checking if user selected destination path is valid to save a website
     NEED_NEW_FOLDER = False # tells the program if it needs to request a new destination path
-    
+
     settings.LOG("Checking if selected destination path already exists")
     pathExists = os.path.isdir(destinationFolder)
     if pathExists:
@@ -116,3 +117,7 @@ settings.LOG("\nselecting theme")
 Themer.selectTheme(htmlFolder)
 
 print("DONE!")
+
+# Opening Website
+website = htmlFolder + "/index.html"
+webbrowser.open(website, new = 0, autoraise=True)
