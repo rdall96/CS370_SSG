@@ -1,0 +1,139 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(31, 31, 31);
+    margin-top:  2.5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-bottom:  2.5rem;
+    align-content: center;
+}
+
+body {
+    background-color: rgb(216, 216, 216);
+    padding-bottom: 2rem;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(216, 216, 216);
+    background-color: rgb(31, 31, 31);
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(216, 216, 216);
+    background-color: rgb(31, 31, 31);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: left;
+    color: rgb(216, 216, 216);
+    background-color: rgb(95, 95, 95);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.25rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-align: left;
+    color: rgb(216, 216, 216);
+    background-color: rgb(95, 95, 95);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.25rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+h5 {
+    font-size: 1.15rem;
+    font-weight: 400;
+    text-align: left;
+    color: rgb(216, 216, 216);
+    background-color: rgb(95, 95, 95);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.25rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    color: rgb(216, 216, 216);
+    background-color: rgb(95, 95, 95);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.25rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+a {
+    color: rgb(68, 198, 238);
+    transition-duration: 500ms;
+}
+a:hover {
+    color: rgb(216, 216, 216);
+    background-color: rgb(28, 147, 184);
+    transition-duration: 500ms;
+}
+
+p {
+    margin-left: 1.5rem;
+}
+
+img {
+    width: 7rem;
+    height: auto;
+}
+
+blockquote {
+    background-color: rgb(230, 230, 230);
+    color: rgb(46, 46, 46);
+    font-style: oblique;
+}
+
+ul {
+    margin-left: 1.5rem;
+}
+
+del {
+    color: rgb(122, 122, 122);
+}
+
+.FlockFooter {
+    padding-top: 3rem;
+    color: rgb(95, 95, 95);
+    padding-right: 2rem;
+    text-align: right;
+    font-size: 10px;
+    font-style: italic;
+}
+.FlockFooter img {
+    width: 20px;
+    height: auto;
+    padding-left: 5px;
+}
