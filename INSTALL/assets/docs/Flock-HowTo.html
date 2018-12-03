@@ -82,8 +82,11 @@
     <div class="sidenav">
         <h1>FLOCK</h1>
         <a href="#HOME">HOME</a>
+        <a href="https://github.com/rdall96/Flock_SSG/releases" target="blank">DOWNLOAD</a>
         <a href="#INSTALLATION">INSTALLATION</a>
         <a href="#HOW_TO_USE">HOW TO USE</a>
+        <a href="https://www.youtube.com/playlist?list=PLtefp1go2DyISQDMQZ0e_IcqlwHO_FdKU" target="blank">PROCESS</a>
+        <a href="#TEAM">TEAM</a>
         <a href="#USEFUL_LINKS">USEFUL LINKS</a>
         <div class="footer">
             <p>© Flock SSG, 2018</p>
@@ -103,11 +106,11 @@
             <div>
                 <p>
                 <h2>What is Flock?</h2>
-                Flock is a simple website generation tool written in Python.
+                Flock is a simple command-line tool, written in Python, to generate websites.
                 The program gathers information on how the website should look like from the user. The information is provided in the form of plain-text, formatted in Markdown.
-                This information includes, theme, colors, data/text to display. The user inputs one or more markdown files (file.md) to the website generator.
-                The program then takes these files, indexes them and converts them to working HTML. A folder with the whole website/converted files is then created with the correct hierarchy.
-                The program keeps track of the data gathered from the user to be able to re-open a previously-created project and modify it on a later date.
+                This information includes, theme, colors, data/text to display. The user inputs the path to a folder with one or more markdown files (file.md) to the website generator.
+                The program then takes these files, indexes them and converts them to working HTML to then save them to a new location, choosen by the user.
+                This folder contains the correct hierarchy for the website to function and it's ready to be uploaded on any hosting service.
                 </p>
             </div><br>
             <!-- Installation -->
@@ -117,16 +120,11 @@
                 <h2>Installation</h2>
                 First of all, you need python installed on your machine to run Flock.
                 If you're on Linux or Mac, you probably already have python installed. If you are on Windows, here's a guide on how to install python:
-                <a href="https://www.python.org/downloads/windows/" target="blank">Install Python on Windows</a>.
-                We are curerntly working to come up with a hassle-free installation process for Flock, but for now there are some elements you need to install yourself to use it.
-                At the moment, there are some libraries you need to add to your system before you can start using Flock.
-                <ul>
-                    <li>Python Markdown Library by John Gruber: <a href="https://github.com/Python-Markdown/markdown">Markdown Library</a></li>
-                    <li>You can also run the following command: <q>pip install markdown</q></li>
-                </ul>
-                You're all set, you should now be able to use Flock without issues.
+                <a href="https://www.python.org/downloads/windows/" target="blank">Install Python on Windows</a>. Also make sure you have the <i>"pip"</i> python library installed.<br><br>
+                Then, you can download the latest version of Flock from here: <a href="https://github.com/rdall96/Flock_SSG/releases" target="blank">Flock Releases</a>.<br><br>
+                Open the terminal for you OS of choice, change your working directory to the one of the installer you just downloaded <q>(<i>cd [PATH_TO_FOLDER]</i>)</q> and run the installer script <q>(<i>sh install_flock.sh</i>)</q>.<br><br>
+                If everything went well you should be all set. You can now Flock by typing <q><i>python -m Flock.flock</i></q> in your command line.
                 </p>
-                <p>We're working on getting an installer that will get Flock all setup for you, stay tuned.</p>
             </div><br>
             <!-- How To Use -->
             <div>
@@ -137,16 +135,46 @@
                 Here's a list of requirements for your website folder:
                 <ul>
                     <li>All text files must be written in Markdown</li>
-                    The extension of a Markdown file is <q>.md</q><br>
+                    The extension of a Markdown file is <q><i>.md</i></q><br>
                     Here's a reference on how to write in Markdown: <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown Cheat Sheet</a>
+                    <li>All file and folder names should not contain any spaces.</li>
                     <li>All file names need to contain a <i>unique file identifier</i></li>
-                    That is a name or code that will be used to keep track of your file. This should be added at the end of your file name, following a <q>-</q>.<br>
-                    Here's an example of what a file name should look like: <q>Page_of_my_website-PG01.md</q>.<br>
+                    That is a name or code that will be used to keep track of your file. This should be added at the end of your file name, following a <q><i>-</i></q>.<br>
+                    Here's an example of what a file name should look like: <q><i>Page_of_my_website-PG01.md</i></q>.<br>
                     This should be applied to all files, including images and other assets, since it is important to link your files with each other in your website.
-                    <li>The main website page unique file identifier must be "index". The filename can anything else as long as the file identifier satisfies this requirement.</li>
+                    <li>The main website page unique file identifier must be <q><i>index</i></q>. The filename can anything else as long as the file identifier satisfies this requirement.</li>
                     <li>All local files you want to include in your website should be in the same local folder, subdirectories are allowed.</li>
-                    <li></li>
+                    <li>You can save your website folder wherever you want on your computer, Flock will be able to find it</li>
                 </ul>
+                When you run Flock, it will need only three things from the user:
+                <ul>
+                    <li>The name of the folder containing the markdown files (aka: the website to convert)</li>
+                    Flock only needs the name of the folder, it will be able to search and find where that folder is on its own. However, if you wanna make the search easier, make sure that name is unique in your filesystem (perhaps you can add <q><i>FLOCK-</i></q> to the beginning of the folder name).
+                    <li>The name of the folder where you want to save the website</li>
+                    (The same conditions os the first folder name apply here)
+                    <li>The number of the theme to choose when prompted for it</li>
+                    You can also choose to provide your own stylesheet to have more control over the look of your website. Just select the correct option and give Flock the full path of where that is saved.
+                </ul>
+                Here are some extra useful features that you could use:
+                <ul>
+                    <li>To run Flock in <b>verbose</b> mode, meaning it will print out exactly what it is doing on the console, type <q><i>-verbose</i></q> at the time of execution</li>
+                    <li>To get this guide to show whe you run Flock, type <q><i>-help</i></q> at execution</li>
+                    <li>All assets and information, including log files of every execution, can be found in the folder <b>~/.flock_preferences/logs/</b> under the user home-folder</li>
+                </ul>
+            </p>
+            </div><br>
+            <!-- Team -->
+            <div>
+                <p>
+                    <a name="TEAM"></a>
+                    <h2>Team</h2>
+                    Flock development team members:
+                    <ul>
+                        <li>Derek Connelly - <a href="https://github.com/CONNELD" target="blank">@CONNELD</a></li>
+                        <li>Ricky Dall'Armellina - <a href="https://github.com/rdall96" target="blank">@rdall96</a></li>
+                        <li>Dan Levy - <a href="https://github.com/Reinok" target="blank">@Reinok</a></li>
+                        <li>Lukas Mallory - <a href="https://github.com/lukeylad19" target="blank">@lukeylad19</a></li>
+                    </ul>
                 </p>
             </div><br>
             <!-- Useful Links -->
@@ -157,9 +185,8 @@
                 Github Project Page: <a href="https://github.com/rdall96/Flock_SSG" target="blank">Flock SSG</a><br>
                 Markdown Python Library: <a href="https://github.com/Python-Markdown/markdown" target="blank">Markdown Library</a><br>
                 Video Presentations: <a href="https://www.youtube.com/playlist?list=PLtefp1go2DyISQDMQZ0e_IcqlwHO_FdKU" target="blank">Flock Team on Youtube</a><br>
-                Example Websites: <a href="#" target="blank">Templates</a><br>
+                Example Websites: <a href="https://github.com/rdall96/Flock_SSG/tree/master/Examples" target="blank">Templates</a><br>
                 </p>
-            <div class="suggestion">Add more links and references</div>
             </div><br> 
         </div>
     </div>
