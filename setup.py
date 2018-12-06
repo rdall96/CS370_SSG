@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="Flock_SSG",
-    version="0.0.1",
+    version="0.0.2",
     author="Derek Connelly, Ricky Dall‘Armellina, Dan Levy, Lukas Mallory",
     author_email="conneld@sunyit.edu",
     description="A static site generator",
