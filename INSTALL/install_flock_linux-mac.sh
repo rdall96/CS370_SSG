@@ -1,4 +1,4 @@
-echo "\nFlock Installer 1.0 beta"
+echo "\nFlock Installer 1.0.1 beta"
 echo "\nInstalling core program"
 pip install --user Flock_SSG >> install_log.txt
 echo "\nInstalling libraries and dependencies"

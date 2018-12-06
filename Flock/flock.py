@@ -67,7 +67,7 @@ def renameIndex(folder):
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
 
-print("\n - Welcome to the Static Site Generator! - \n")
+print("\n - Welcome to Flock SSG - v1.0.1 beta - \n")
 
 # Show usage docs if first time and check for arguments in command line
 UsageDocs.showDocs(0)
@@ -76,15 +76,35 @@ if ARG_RETURN == True:
     # enable DEBUG
     settings.DEBUG = True
 
-# Get path with markdown files from user
-markdownFolder = OSutil.systemCheck(input("Insert path to markdown documents: "))
-settings.LOG("Source folder:  " + markdownFolder)
-# Adding '/www' to the destination path to make sure it's an non-existing path to save the website
-htmlFolder = OSutil.systemCheck(input("Insert path to the website folder: ")) + "/www"
-# keep requesting new destination folder until path is okay to use
-while checkExistingDestination(htmlFolder):
-    htmlFolder = OSutil.systemCheck(input("Insert path to the website folder: ")) + "/www"
-settings.LOG("Destination folder:  " + htmlFolder)
+# Ricky Dall'Armellina - 12/06/2018 - Wrapping folder search in try catch to ensure stability when the folder path is not found
+FOUND_FOLDER = False
+while not FOUND_FOLDER:
+    try:
+        # Get path with markdown files from user
+        markdownFolder = OSutil.systemCheck(input("Insert path to markdown documents: "))
+        FOUND_FOLDER = True
+        settings.LOG("Source folder:  " + markdownFolder)
+    except:
+        # could not find path, re-try
+        FOUND_FOLDER = False
+        print("Could not find a folder with the inserted name.")
+        print("Please indicate the name of an existing folder.")
+
+FOUND_FOLDER = False
+while not FOUND_FOLDER:
+    try:
+        # Adding '/www' to the destination path to make sure it's an non-existing path to save the website
+        htmlFolder = OSutil.systemCheck(input("Insert path to the website folder: ")) + "/www"
+        FOUND_FOLDER = True
+        # keep requesting new destination folder until path is okay to use
+        while checkExistingDestination(htmlFolder):
+            htmlFolder = OSutil.systemCheck(input("Insert path to the website folder: ")) + "/www"
+        settings.LOG("Destination folder:  " + htmlFolder)
+    except:
+        # could not find path, re-try
+        FOUND_FOLDER = False
+        print("Could not find a folder with the inserted name.")
+        print("Please indicate the name of an existing folder.")
 
 # Create htmlFolder directory structure and copy files to it
 settings.LOG("\ncopying files")
