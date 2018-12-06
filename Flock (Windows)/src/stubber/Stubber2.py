@@ -80,7 +80,7 @@ def populateDict(folder):
             # v2.0 - Renamed function call according to changes
             filePath = os.path.join(root, fileName)
             # remove top fiolder from file path for correct linking
-            filePath = re.sub((folder + "/"), "", filePath)
+            #filePath = re.sub((folder + "/"), "", filePath)
             addToDict(filePath)
             filesStubbed += 1
     settings.LOG("\nStubbed " + (str)(filesStubbed) + " files\n")

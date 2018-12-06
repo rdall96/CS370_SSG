@@ -9,7 +9,7 @@
 #----------------------------------------------------------------------
 
 from . import settings
-import docs.showDocs as UsageDocs
+import Flock.src.docs.showDocs as UsageDocs
 
 # Argument flags
 HELP_FLAG = "-help"

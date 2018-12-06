@@ -12,8 +12,8 @@ from . import settings
 from tempfile import mkstemp
 from shutil import move
 from os import fdopen, remove
-import navigator.dirNaviV2 as Navi
-import stubber.Stubber2 as dictionary
+import Flock.src.navigator.dirNaviV2 as Navi
+import Flock.src.stubber.Stubber2 as dictionary
 import string
 import re
 import os

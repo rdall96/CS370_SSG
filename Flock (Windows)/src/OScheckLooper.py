@@ -13,7 +13,7 @@
 from . import settings
 import platform
 import os
-import stubber.Stubber2 as Stub
+import Flock.src.stubber.Stubber2 as Stub
 
 
 def findFile(name, path):

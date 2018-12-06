@@ -14,7 +14,7 @@
 from .. import settings
 import os
 import markdown
-import markdown_extensions
+import Flock.src.converter.markdown_extensions
 
 FLOCK_HEADER_CODE = """<!DOCTYPE html>
 <html><head>
