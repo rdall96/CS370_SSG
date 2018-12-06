@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flock SSG | Usage Documentation</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: #dddddd;
+        }
+        h1 {
+        }
+        .sidenav {
+            height: 100%;
+            width: 15rem;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #222222;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        .sidenav a {
+            padding: 16px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+        }
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+        .sidenav h1 {
+            padding: 2px 0px 6px 0px;
+            text-decoration: none;
+            font-size: 30px;
+            color: #f1f1f1;
+            display: block;
+            text-align: center;
+        }
+        .main {
+            margin-left: 15rem;
+            padding: 0px 10px;
+        }
+        .main h1 {
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        .main p {
+            padding-left: 2rem;
+        }
+        .text {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            text-align: justify;
+        }
+        .footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.75rem;
+            font-size: 1rem;
+            text-align: center;
+            color: #c1c1c1;
+        }
+        .suggestion {
+            font-size: 1rem;
+            color: #919191;
+            opacity: 0.7;
+            font-style: italic;
+            margin-bottom: 1rem;
+            margin-left: 2.5rem;
+        }
+    </style>
+</html>
+<body>
+    <!-- SIDENAV -->
+    <div class="sidenav">
+        <h1>FLOCK</h1>
+        <a href="#HOME">HOME</a>
+        <a href="https://github.com/rdall96/Flock_SSG/releases" target="blank">DOWNLOAD</a>
+        <a href="#INSTALLATION">INSTALLATION</a>
+        <a href="#HOW_TO_USE">HOW TO USE</a>
+        <a href="https://www.youtube.com/playlist?list=PLtefp1go2DyISQDMQZ0e_IcqlwHO_FdKU" target="blank">PROCESS</a>
+        <a href="#TEAM">TEAM</a>
+        <a href="#USEFUL_LINKS">USEFUL LINKS</a>
+        <div class="footer">
+            <p>© Flock SSG, 2018</p>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+        <a name="HOME"></a>
+        <!-- Title -->
+        <div>
+            <h1>FLOCK SSG</h1><br>
+            <p><center>Welcome to Flock SSG, the static site generator with self-migrating links.</center></p>
+        </div><br>
+        <div class="text">
+            <!--What is Flock? -->
+            <div>
+                <p>
+                <h2>What is Flock?</h2>
+                Flock is a simple command-line tool, written in Python, to generate websites.
+                The program gathers information on how the website should look like from the user. The information is provided in the form of plain-text, formatted in Markdown.
+                This information includes, theme, colors, data/text to display. The user inputs the path to a folder with one or more markdown files (file.md) to the website generator.
+                The program then takes these files, indexes them and converts them to working HTML to then save them to a new location, choosen by the user.
+                This folder contains the correct hierarchy for the website to function and it's ready to be uploaded on any hosting service.
+                </p>
+            </div><br>
+            <!-- Installation -->
+            <div>
+                <p>
+                <a name="INSTALLATION"></a>
+                <h2>Installation</h2>
+                First of all, you need python installed on your machine to run Flock.
+                If you're on Linux or Mac, you probably already have python installed. If you are on Windows, here's a guide on how to install python:
+                <a href="https://www.python.org/downloads/windows/" target="blank">Install Python on Windows</a>. Also make sure you have the <i>"pip"</i> python library installed.<br><br>
+                Then, you can download the latest version of Flock from here: <a href="https://github.com/rdall96/Flock_SSG/releases" target="blank">Flock Releases</a>.<br><br>
+                Open the terminal for you OS of choice, change your working directory to the one of the installer you just downloaded <q>(<i>cd [PATH_TO_FOLDER]</i>)</q> and run the installer script <q>(<i>sh install_flock.sh</i>)</q>.<br><br>
+                If everything went well you should be all set. You can now Flock by typing <q><i>python -m Flock.flock</i></q> in your command line.
+                </p>
+            </div><br>
+            <!-- How To Use -->
+            <div>
+                <p>
+                <a name="HOW_TO_USE"></a>
+                <h2>How To Use</h2>
+                Before you can use Flock, you need to make sure you have all of your files and data you wanna turn into a website setup correctly.
+                Here's a list of requirements for your website folder:
+                <ul>
+                    <li>All text files must be written in Markdown</li>
+                    The extension of a Markdown file is <q><i>.md</i></q><br>
+                    Here's a reference on how to write in Markdown: <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown Cheat Sheet</a>
+                    <li>All file and folder names should not contain any spaces.</li>
+                    <li>All file names need to contain a <i>unique file identifier</i></li>
+                    That is a name or code that will be used to keep track of your file. This should be added at the end of your file name, following a <q><i>-</i></q>.<br>
+                    Here's an example of what a file name should look like: <q><i>Page_of_my_website-PG01.md</i></q>.<br>
+                    This should be applied to all files, including images and other assets, since it is important to link your files with each other in your website.
+                    <li>The main website page unique file identifier must be <q><i>index</i></q>. The filename can anything else as long as the file identifier satisfies this requirement.</li>
+                    <li>All local files you want to include in your website should be in the same local folder, subdirectories are allowed.</li>
+                    <li>You can save your website folder wherever you want on your computer, Flock will be able to find it</li>
+                </ul>
+                When you run Flock, it will need only three things from the user:
+                <ul>
+                    <li>The name of the folder containing the markdown files (aka: the website to convert)</li>
+                    Flock only needs the name of the folder, it will be able to search and find where that folder is on its own. However, if you wanna make the search easier, make sure that name is unique in your filesystem (perhaps you can add <q><i>FLOCK-</i></q> to the beginning of the folder name).
+                    <li>The name of the folder where you want to save the website</li>
+                    (The same conditions os the first folder name apply here)
+                    <li>The number of the theme to choose when prompted for it</li>
+                    You can also choose to provide your own stylesheet to have more control over the look of your website. Just select the correct option and give Flock the full path of where that is saved.
+                </ul>
+                Here are some extra useful features that you could use:
+                <ul>
+                    <li>To run Flock in <b>verbose</b> mode, meaning it will print out exactly what it is doing on the console, type <q><i>-verbose</i></q> at the time of execution</li>
+                    <li>To get this guide to show whe you run Flock, type <q><i>-help</i></q> at execution</li>
+                    <li>All assets and information, including log files of every execution, can be found in the folder <b>~/.flock_preferences/logs/</b> under the user home-folder</li>
+                </ul>
+            </p>
+            </div><br>
+            <!-- Team -->
+            <div>
+                <p>
+                    <a name="TEAM"></a>
+                    <h2>Team</h2>
+                    Flock development team members:
+                    <ul>
+                        <li>Derek Connelly - <a href="https://github.com/CONNELD" target="blank">@CONNELD</a></li>
+                        <li>Ricky Dall'Armellina - <a href="https://github.com/rdall96" target="blank">@rdall96</a></li>
+                        <li>Dan Levy - <a href="https://github.com/Reinok" target="blank">@Reinok</a></li>
+                        <li>Lukas Mallory - <a href="https://github.com/lukeylad19" target="blank">@lukeylad19</a></li>
+                    </ul>
+                </p>
+            </div><br>
+            <!-- Useful Links -->
+            <div>
+                <p>
+                <a name="USEFUL_LINKS"></a>
+                <h2>Useful Links</h2>
+                Github Project Page: <a href="https://github.com/rdall96/Flock_SSG" target="blank">Flock SSG</a><br>
+                Markdown Python Library: <a href="https://github.com/Python-Markdown/markdown" target="blank">Markdown Library</a><br>
+                Video Presentations: <a href="https://www.youtube.com/playlist?list=PLtefp1go2DyISQDMQZ0e_IcqlwHO_FdKU" target="blank">Flock Team on Youtube</a><br>
+                Example Websites: <a href="https://github.com/rdall96/Flock_SSG/tree/master/Examples" target="blank">Templates</a><br>
+                </p>
+            </div><br> 
+        </div>
+    </div>
+</body>

@@ -1,0 +1,129 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    background-color: rgba(230, 230, 230, 1);
+    margin-top: 15px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    background-color: lightgrey;
+    font-weight: bolder;
+    font-size: 32px;
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-shadow: 2px 2px darkgray;
+}
+
+h2 {
+    background-color: darkcyan;
+    color: seashell;
+    font-size: 28px;
+    text-align: left;
+    vertical-align: center;
+    font-weight: bold;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-bottom: 1px;
+}
+
+h3 {
+    background-color: darkorchid;
+    color: seashell;
+    font-size: 24px;
+    text-align: left;
+    vertical-align: center;
+    font-weight: bold;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-bottom: 1px;
+}
+
+h4 {
+    background-color: rgb(153, 0, 64);
+    color: seashell;
+    font-size: 20px;
+    text-align: left;
+    vertical-align: center;
+    font-weight: bold;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-bottom: 1px;
+}
+
+h5 {
+    background-color: rgb(138, 63, 1);
+    color: seashell;
+    font-size: 16px;
+    text-align: left;
+    vertical-align: center;
+    font-weight: bold;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-bottom: 1px;
+}
+
+h6 {
+    background-color: rgb(11, 92, 0);
+    color: seashell;
+    font-size: 16px;
+    text-align: left;
+    vertical-align: center;
+    font-weight: bold;
+    padding-top: 1px;
+    padding-left: 15px;
+    padding-bottom: 1px;
+}
+
+a {
+    color: orangered;
+}
+a:hover {
+    color: white;
+    background-color: orangered;
+    transition-duration: 500ms;
+}
+
+p {
+    
+    font-size: 12px;
+    font-weight: 200;
+    text-align: left;
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
+blockquote {
+    background-color: antiquewhite;
+    font-weight: 300;
+    font-style: italic;
+}
+
+ul {
+    font-size: inherit;
+}
+
+del {
+    color: rgb(126, 126, 126);
+}
+
+.FlockFooter {
+    padding-top: 3rem;
+    color: rgb(95, 95, 95);
+    padding-right: 2rem;
+    text-align: right;
+    font-size: 10px;
+    font-style: italic;
+}
+.FlockFooter img {
+    width: 20px;
+    height: auto;
+    padding-left: 5px;
+}
