@@ -1,6 +1,6 @@
 echo "\nFlock Installer 1.0 beta"
 echo "\nInstalling core program"
-pip install --user -i https://test.pypi.org/simple/ Flock-Alpha >> install_log.txt
+pip install --user Flock_SSG >> install_log.txt
 echo "\nInstalling libraries and dependencies"
 pip install --user markdown >> install_log.txt
 echo "\nCreating preferences directory"
